@@ -1,12 +1,16 @@
 #summary Some guidelines for evaluating and comparing game ideas.
 
+<wiki:toc max_depth="2" />
+
 =Game Criteria=
 
 Whenever we put on a new contest, the first step is to choose a contest problem. In these AI contests, the problem generally takes the form of a simple game. This page contains some guidelines and criteria for evaluating the quality of proposed contest problems.
 
 ==Easy==
 
-Hard problems are scary.
+Hard problems are scary. Even if a problem is familiar and interesting, people will still walk away if they think that
+  * they are unable to create a serious entry, or
+  * it would take too much time to create a serious entry.
 
 ==Familiar==
 
