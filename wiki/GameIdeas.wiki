@@ -1,19 +1,34 @@
 #summary A list of games ideas that can be used for future contests.
 
-= Game Ideas =
+<wiki:toc max_depth="2" />
 
-  * Simple RTS
-  * Chess
-  * Tron
-  * Simple Shooter
-  * Least Unique Positive Integer
-  * Maze Escape
-  * Go
-  * Blokus
-  * Risk
-  * Rock Paper Scissors
-  * Survivor
-  * Backgammon
-  * Canadian Checkers
-  * Multi-Agent Battle
-  * Billiards
+=Simple RTS=
+
+  * Real-time strategy game
+  * Square tiles
+  * Each tile is passable or non-passable (land and water)
+  * Each unit has some properties
+    * HP
+    * Firepower
+    * Range
+    * Speed
+  * To make things more complicated...
+    * Purchase new units
+    * Occupy points of interest
+    * Collect resources
+    * Take away perfect information
+
+=Chess=
+=Tron=
+=Simple Shooter=
+=Least Unique Positive Integer=
+=Maze Escape=
+=Go=
+=Blokus=
+=Risk=
+=Rock Paper Scissors=
+=Survivor=
+=Backgammon=
+=Canadian Checkers=
+=Multi-Agent Battle=
+=Billiards=
