@@ -24,7 +24,7 @@ The key questions are
 
 Here, "people" is understood to mean "people who have at least basic programming experience". We don't care whether your mom would recognize the game, because there's no way she is going to participate in the contest anyways.
 
-==Sexiness==
+==Interesting==
 
 Interesting problems are those that a large percentage of people with basic programming experience will enjoy reading about. Taking a straw poll among the contest staff or some other group of programmers is usually a good way to measure the level of interest in a problem.
 
@@ -37,4 +37,18 @@ What matters is what percentage of people with basic programming experience woul
 
 Examples of sexy problems are Go, Real-Time Strategy games, and Tron. A good example of an un-sexy problem is Least Unique Positive Integer. It's deeply awesome from a game-theoretic point of view, but it's unlikely to catch fire and go viral on the internet.
 
-=Examples=
+==Technically Feasible==
+
+In an ideal world, this would not be a factor. Sadly, in the real world it is. It's important to consider
+  * whether we can run the contest using the resources we have available, and
+  * the amount of time it takes to implement the contest.
+
+Keep in mind that there is a tradeoff between
+  * the computational intensity of accurately testing an entry, and
+  * the speed with which we can deliver quality feedback to contestants.
+
+==Non-trivial==
+
+Make really sure that there is no way to "solve" the problem. It's bad if partway through the contest someone comes up with "the best possible solution". If many people find a perfect or near-perfect solution, the rankings at the top of the leaderboard become random for all practical purposes.
+
+Games like Tic-Tac-Toe are obvious examples of bad choices. However, even deep games like Rock Paper Scissors can turn into a disaster, since there are solutions that are very close to being perfect, even if they're not exactly perfect.
