@@ -1,0 +1,25 @@
+#summary Some guidelines for evaluating and comparing game ideas.
+
+=Game Criteria=
+
+Whenever we put on a new contest, the first step is to choose a contest problem. In these AI contests, the problem generally takes the form of a simple game. This page contains some guidelines and criteria for evaluating the quality of proposed contest problems.
+
+==Easy==
+
+Hard problems are scary.
+
+==Familiar==
+
+People are more likely to participate in a contest if they are more familiar with the problem. Familiar games include Rock Paper Scissors, Chess, Survivor, and Billiards. Unfamiliar games include Least Unique Positive Integer and Blokus.
+
+The key questions are
+  * What percentage of people recognize the game's name?
+  * What percentage of people would call themselves somewhat familiar with the rules or basic premise of the game?
+
+Here, "people" is understood to mean "people who have at least basic programming experience".
+
+==Interesting==
+
+
+
+=Examples=
