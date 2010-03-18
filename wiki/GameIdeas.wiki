@@ -1,13 +1,19 @@
 #summary A list of games ideas that can be used for future contests.
 
-= Introduction =
+= Game Ideas =
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  * Simple RTS
+  * Chess
+  * Tron
+  * Simple Shooter
+  * Least Unique Positive Integer
+  * Maze Escape
+  * Go
+  * Blokus
+  * Risk
+  * Rock Paper Scissors
+  * Survivor
+  * Backgammon
+  * Canadian Checkers
+  * Multi-Agent Battle
+  * Billiards
