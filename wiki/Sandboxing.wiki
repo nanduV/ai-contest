@@ -31,3 +31,17 @@ Nevertheless, there is a fairly large disadvantage to using Systrace. It can be 
 The slowness is especially pronounced when running Java programs. The JVM uses a large number of threads, even to execute relatively simple programs. Because of this, there are long delays between the time when a syscall is issued by a JVM thread and the time when the reply is received and acted upon. In particular, Java programs have trouble staying under the per-move time limit, because by the time they're able to figure out how much time has elapsed, they have often already run over the time limit. This is very frustrating for Java users, because there's nothing they can do to fix it.
 
 The performance for languages besides Java seems to be satisfactory. If we can figure out some other way to sandbox Java and use Systrace for everything else, that should do the trick. Therefore we judge that Systrace-based sandboxing is a viable option.
+
+Systrace was used with great success to secure the Google AI Challenge in Winter 2010. The only hickup was that it was close to impossible to create a competitive entry in Java. All other languages seemed to be okay.
+
+==SMACK==
+
+SMACK stands for Simplified Mandatory Access Control Kernel. It works similarly to Systrace and ptrace, by intercepting syscalls and deciding whether to allow or deny them based on a policy.
+
+The advantage of SMACK is that it would likely be much faster than Systrace. SMACK makes the decision about whether to allow or deny a syscall in the kernel side of the process being monitored. Therefore, the issue of alternation between Systrace and the untrusted process is eliminated. We expect that using SMACK would eliminate the Java problem.
+
+There are several disadvantages to using SMACK:
+  * SMACK seems to be more complicated to setup and configure than Systrace
+  * SMACK is not yet integrated into the kernels of standard Ubuntu or Debian, and may never be. In order to use it, you need to use a specially-compiled kernel.
+
+The disadvantages are manageable for the contest staff, it seems. However, the disadvantages could discourage independent developers from pulling down the code and tinkering with it. Ideally, we would have a contest system that can be setup and launched on a typical Ubuntu laptop within a few minutes. If somebody has to recompile their kernel in order to launch a contest instance, that will be a big barrier to entry for the project. This limitation can be overcome by providing a default sandbox which performs no security beyond per-move time limit enforcement, with the option to turn on SMACK-based sandboxing if you really want to.
