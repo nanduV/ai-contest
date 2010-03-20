@@ -1,8 +1,8 @@
 #summary Some guidelines for evaluating and comparing game ideas.
 
-<wiki:toc max_depth="2" />
-
 =Game Criteria=
+
+<wiki:toc max_depth="2" />
 
 Whenever we put on a new contest, the first step is to choose a contest problem. In these AI contests, the problem generally takes the form of a simple game. This page contains some guidelines and criteria for evaluating the quality of proposed contest problems.
 
