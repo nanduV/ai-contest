@@ -1,0 +1,3 @@
+#summary Discusses common contest components, with the goal of eventually generalizing them for use with new contests.
+
+!=Common Contest Components=
