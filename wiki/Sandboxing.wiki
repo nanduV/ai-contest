@@ -1,0 +1,23 @@
+#summary Discusses several methods for sandboxing untrusted code.
+
+=Sandboxing=
+
+<wiki:toc max_depth="2" />
+
+==What is Sandboxing?==
+
+In our programming contests, contestants submit their code using a web interface. The code is then compiled and run by our servers. This presents several security issues. A malicious or careless person may submit code that attempts to:
+  * delete files
+  * make network connections to outside servers
+  * spawn an extraordinary number of threads (forkbomb)
+  * interfere with other submissions
+  * connect to or wreck the contest's database
+  * any number of other nasty things
+
+It is for this reason that we need to run untrusted code inside a "sandbox", or "padded cell". The sandbox prevents untrusted programs from doing bad things. There are several different ways to sandbox untrusted code.
+
+==Ptrace==
+
+Ptrace can be used to sandbox untrusted code by intercepting potentially harmful system calls. However, this approach has been judged to be unsuitable because:
+  * it is difficult to follow the execution of a program through multiple threads
+  * systrace basically does the same thing anyways, except it's easier to use
