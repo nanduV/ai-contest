@@ -1,3 +1,5 @@
-#summary Discusses common contest components, with the goal of eventually generalizing them for use with new contests.
+#summary Discusses common contest components, with the goal of generalizing them for use with new contests.
 
-!=Common Contest Components=
+=Common Contest Components=
+
+Many contests have similar components. This page is a place to discuss such components, with the goal of generalizing them for use with new contests. There is not much point in duplicating effort by having each contest have its own tournament manager, compile pipeline, sandboxing system, etc.
