@@ -45,3 +45,11 @@ Some sort of library or package to sandbox the execution of untrusted code (such
 TMs can probably be reused for the majority of contests. Most contests will involve a game where each game is one-on-one, and several games make up a tournament. In these cases, a properly general TM can take 90% of the tedium out of writing a new TM for each contest.
 
 ==Website==
+
+Each contest has to have different content. However, content is by far the easiest and quickest part of the website creation. Ideally, the authors of new contests would spend almost zero time "setting up" the contest's website, and more time writing interesting content for their contest. Most websites will have these elements:
+  * leaderboard
+  * forums
+  * common look-and-feel with the main website
+  * navbar
+  * login/logout
+  * code submission form
