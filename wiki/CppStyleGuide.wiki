@@ -2,9 +2,17 @@
 
 =C++ Style Guide=
 
-This project adheres to the Google C++ Style Guide, with a few exceptions:
+This project adheres to the [http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml Google C++ Style Guide], with a few exceptions:
   * *class method names*: start with a capital letter and have a capital letter for each new word, with no underscores.
 
 ==Why Have a Style Guide?==
 
 Check out the Background section of the [http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml Google C++ Style Guide].
+
+==But My Style Convention is Better for Reasons X==
+
+You're probably right. However, having a convention is more important than which particular convention is better.
+
+==But I Strongly Disagree with Certain Provisions for Reasons that Make Good Sense==
+
+Please follow the style guide faithfully anyways. It really is important to have a consistent codebase, even if the style guide isn't perfect. Truly awesome coders eagerly adapt their style to match the project they are contributing to.
