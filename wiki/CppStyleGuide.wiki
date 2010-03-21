@@ -1,0 +1,10 @@
+#summary The project's style guide for C++ code.
+
+=C++ Style Guide=
+
+This project adheres to the Google C++ Style Guide, with a few exceptions:
+  * *class method names*: start with a capital letter and have a capital letter for each new word, with no underscores.
+
+==Why Have a Style Guide?==
+
+Check out the Background section of the [http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml Google C++ Style Guide].
