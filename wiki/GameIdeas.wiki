@@ -101,3 +101,13 @@
   * With imperfect information.
   * The bots get to say where they want to aim, but gaussian noise with a known standard deviation is added to their commands.
   * Like a human player, it's all about choosing the best shot which also has some likelihood of turning out as planned.
+
+=Manhunt/Hide&Seek=
+  * A two+ player game.
+  * One player is called the predator, and the remaining players are called the prey.
+  * The goal of the prey could be one of many things - get to a specific region on the map, survive for a certain number of turns, etc.
+  * Game is played on a 2D randomly generated map. The catch is that the predator has incomplete information about the location of the prey - they can only see the prey if the prey is within line of sight.
+  * The predator (optionally?) knows the layout of the map.
+  * The prey on the  other hand can see where the predator is at all times (or not).
+  * Each turn, the predator moves up to two squares, and the prey moves up to one square. The prey moves first.
+  * If the predator moves on top of any of the prey, that prey is out of the game.
