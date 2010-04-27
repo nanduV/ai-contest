@@ -111,3 +111,7 @@
   * The prey on the  other hand can see where the predator is at all times (or not).
   * Each turn, the predator moves up to two squares, and the prey moves up to one square. The prey moves first.
   * If the predator moves on top of any of the prey, that prey is out of the game.
+
+=Scrabble=
+
+Scrabble is one of these games that is not amenable to brute-force Minimax search. Despite years of research, it appears as though competitive humans still slaughter the best Scrabble programs. Scrabble contains many interesting CS problems.
