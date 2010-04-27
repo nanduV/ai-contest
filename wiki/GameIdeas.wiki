@@ -115,3 +115,21 @@
 =Scrabble=
 
 Scrabble is one of these games that is not amenable to brute-force Minimax search. Despite years of research, it appears as though competitive humans still slaughter the best Scrabble programs. Scrabble contains many interesting CS problems.
+
+=Hex=
+
+Invented by John Nash. Looks like a really cool game. Since it favors the first player to move, the pie rule must be used for the first move, which could be confusing to contestants. The game is solved up to a size of 9x9, so much bigger boards would have to be used, just to be safe.
+
+=Dots and Boxes=
+
+This is the game that every kid has played on long car rides. Starting with an empty grid of dots, players take turns, adding a single horizontal or vertical line between two unjoined adjacent dots. A player who completes the fourth side of a box earns one point and takes another turn. (The points are typically recorded by placing in the box an identifying mark of the player, such as an initial). The game ends when no more lines can be placed. The winner of the game is the player with the most points.
+
+The game is very familiar to most people, has not been solved except for rather small boards, is not amenable to brute-force Minimax search. The downside is that it may take quite a lot of time for a new contestant to make the jump from random play to somewhat satisfying strategic play. Here are some strategies:
+  * Randomly select a legal move.
+  * Sort the moves based on the maximum number of sides the modified boxes will have, in the following order: 4, 2, 1, 3. Then choose the best move. Basically, take any trivially completable boxes, and avoid creating boxes with three sides.
+  * Minimax search
+  * Add reasoning about chains of moves. The endgame often ends up being a bunch of chains, or "hallways" of moves. Reason about these as a whole, rather than worrying about individual moves.
+
+=Reversi=
+
+This is a game where computers have easily beaten the best humans since 1990. On the standard 8x8 board, it is thought that the game is drawn. This makes it a decent candidate as a "fair" game. The downside is that this would turn into a Minimax bakeoff, with very little in the way of innovative algorithms.
