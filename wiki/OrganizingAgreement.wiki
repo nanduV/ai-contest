@@ -15,8 +15,8 @@ This agreement is meant to make organizers/planning volunteers understand their 
 
 By helping in this contest, volunteers need to understand the downsides of participating.
 
-*What a volunteer should not do:*
- * participate in the contest. This could be seen as a conflict of interest and could harm the contest.
+*What a volunteer should NOT do:*
+ * participate in the contest, *most important*. This could be seen as a conflict of interest and could harm the contest.
  * disclose information that will give an unfair advantage to contest participants.
  * disclose information that might hinder security for any part of the contest.
  * disclose information that was not cleared to be shared with the public.
