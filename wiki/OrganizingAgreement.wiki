@@ -9,9 +9,9 @@ This agreement is meant to make organizers/planning volunteers understand their 
 = Agreement =
 
 *This agreement applies to:*
-  * volunteers that help with the contest in a significant way
-  * members of ConCom and SysCom in CSClub
-  * any other person that has knowledge of the internals of the contest.
+ * Anyone with commit access on any code repo in the last 12 months.
+ * Anyone with physical access to the contest systems.
+ * Anyone with official responsibilities related to the contest.
 
 By helping in this contest, volunteers need to understand the downsides of participating.
 
