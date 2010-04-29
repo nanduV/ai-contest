@@ -9,7 +9,7 @@ This agreement is meant to make organizers/planning volunteers understand their 
 = Agreement =
 
 *This agreement applies to:*
- * Anyone with commit access on any code repo in the last 12 months.
+ * Anyone with commit access on any relevant code repository in the last 12 months.
  * Anyone with physical access to the contest systems.
  * Anyone with official responsibilities related to the contest.
 
