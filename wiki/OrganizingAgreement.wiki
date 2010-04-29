@@ -1,4 +1,4 @@
-#summary Agreement meant to make organizers/planning volunteers nderstand their responsibilities.
+#summary Agreement meant to make organizers/planning volunteers understand their responsibilities.
 #labels Phase-Requirements,Phase-Design
 
 = Introduction =
