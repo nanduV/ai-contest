@@ -1,0 +1,11 @@
+#summary Discusses ways to raise revenue to pay for servers, prizes, and other costs.
+
+=Revenue Models=
+
+This page discusses ways to raise revenue for the contest to pay for servers, prizes, and other costs.
+
+==Ads==
+
+  # Collect users
+  # ...
+  # Profit!
