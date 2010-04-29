@@ -9,3 +9,9 @@ This page discusses ways to raise revenue for the contest to pay for servers, pr
   # Collect users
   # ...
   # Profit!
+
+But seriously... ads may be a viable revenue model for the contest.
+
+Large ad networks like Google seem to operate on a cost-per-click (CPC) model for the most part. This means that we get paid every time a visitor clicks on one of the ads. The revenue per click is not fixed, and can vary quite a bit. It's difficult to estimate it. Also, a big unknown is what fraction of visitors to a programming contest website would click ads. The bad news is that it may be quite low. Under this much uncertainty, it's difficult to venture a guess as to how much revenue CPC advertising might generate.
+
+Some smaller ad networks that deal only with relatively high-traffic sites operate on a cost-per-thounsand-impressions (CPM) model. That means you get paid whenever the ad is loaded, not just when it's clicked. I have seen some evidence that typical CPMs are around $5 to $40 per thousand impressions for large sites. The Winter 2010 contest received over a million impressions. Assuming a CPM of $1 and traffic of one million impression per month, that turns into revenue of $1000 per month. This is enough to pay for 10 low-end dedicated servers. This calculation is very approximate and should be taken with a grain of salt.
