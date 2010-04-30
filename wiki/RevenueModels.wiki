@@ -29,3 +29,7 @@ Turn the contest into a recruiting service. At the end of the contest, we would 
   * *Referral Fees.* We could charge a fixed fee per top-ranked contestant that we send them.
 
 In this model, we can use a combination of finders' fees and referral fees in order to strike the right balance between risk and reward for the contest as well as the firm doing the hiring.
+
+==Donations==
+
+To collect donations, slap a big "Donate" button on the website somewhere. Be very open about what the money is being used for and how much is being donated.
