@@ -8,4 +8,17 @@ This page contains a specification of all the file formats used in the Galcon co
 
 ==Galcon Point-in-Time Format==
 
+This is a text format which specifies the state of a game of Galcon at a single point in time. This format is used in two main places. The first is to specify Galcon maps, since maps are just a starting game state. The second is to communicate between the game engine and the client programs (end-user submissions). Basically, the game engine sends a description of the game state to each client, and waits for orders from each client.
+
+Lines are separated by a single newline character, Linux style. Each line gives information about a planet or an in-transit fleet. Lines that describe a planet start with a character 'P'. Lines that describe a fleet start with a character 'F'. All characters in a line after a '#' character should be ignored by the parser. Blank lines and lines composed only of whitespace are okay. Non-whitespace lines that do not describe a planet or a fleet should generate an error.
+
+Planets have x and y coordinates, an owner, and a number of ships. The coordinates can be any real numbers, and don't have to be integers. The owner is an integer. An owner value of zero indicates that the planet is neutral. For example, here are some valid planet lines:
+
+{{{
+# Some example planets
+P 0 0 1 34 # Player one's home planet.
+P 7 9 2 34 # Player two's home planet.
+P 3.14 2.71 0 15 # A neutral planet with real-number coordinates.
+}}}
+
 ==Galcon Playback Format==
