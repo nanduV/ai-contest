@@ -2,12 +2,10 @@
 
 =Galcon File Formats=
 
-Add your content here.
+This page contains a specification of all the file formats used in the Galcon contest. Currently, there are two. The Point-in-Time Format is used to communicate the state of a game of Galcon at a given point of time. It is also used to specify Galcon maps, since maps are a starting state for a game. The Game Playback format is used to record an entire game of Galcon, for later playback and visualization.
 
+<wiki:toc max_depth="2" />
 
-= Details =
+==Galcon Point-in-Time Format==
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+==Galcon Playback Format==
