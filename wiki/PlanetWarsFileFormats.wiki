@@ -1,14 +1,14 @@
-#summary Overview and specification of file formats used in the Galcon contest.
+#summary Overview and specification of file formats used in the Planet Wars contest.
 
-=Galcon File Formats=
+=Planet Wars File Formats=
 
-This page contains a specification of all the file formats used in the Galcon contest. Currently, there are two. The Point-in-Time Format is used to communicate the state of a game of Galcon at a given point of time. It is also used to specify Galcon maps, since maps are a starting state for a game. The Game Playback format is used to record an entire game of Galcon, for later playback and visualization.
+This page contains a specification of all the file formats used in the Planet Wars contest. Currently, there are two. The Point-in-Time Format is used to communicate the state of a game of Planet Wars at a given point of time. It is also used to specify Planet Wars maps, since maps are a starting state for a game. The Game Playback format is used to record an entire game of Planet Wars, for later playback and visualization.
 
 <wiki:toc max_depth="2" />
 
-==Galcon Point-in-Time Format==
+==Planet Wars Point-in-Time Format==
 
-This is a text format which specifies the state of a game of Galcon at a single point in time. This format is used in two main places. The first is to specify Galcon maps, since maps are just a starting game state. The second is to communicate between the game engine and the client programs (end-user submissions). Basically, the game engine sends a description of the game state to each client, and waits for orders from each client.
+This is a text format which specifies the state of a game of Planet Wars at a single point in time. This format is used in two main places. The first is to specify Planet Wars maps, since maps are just a starting game state. The second is to communicate between the game engine and the client programs (end-user submissions). Basically, the game engine sends a description of the game state to each client, and waits for orders from each client.
 
 Lines are separated by a single newline character, Linux style. Each line gives information about a planet or an in-transit fleet. Lines that describe a planet start with a character 'P'. Lines that describe a fleet start with a character 'F'. All characters in a line after a '#' character should be ignored by the parser. Blank lines and lines composed only of whitespace are okay. Non-whitespace lines that do not describe a planet or a fleet should generate an error.
 
@@ -44,9 +44,9 @@ F 2 28 1 2 8 4 # Player two has sent some ships to take over the neutral planet.
 
 The above example is composed of three planets. One is owned by player one, another is owned by player two. Between them is a neutral planet. In addition to the forces owned by each of the two players on the planets themselves, the two players each have fleets in transit. Player one has a fleet of 15 ships that is about to arrive at player two's home planet. Player two has a fleet of 28 ships that is half way to the neutral planet.
 
-==Galcon Playback Format==
+==Planet Wars Playback Format==
 
-This format is meant to be a complete record of a game of Galcon. It will be used primarily to visualize games so that end users can see a playback of their games. Since game playback information will be stored using a string of characters in a MySQL database, newline characters will not be used.
+This format is meant to be a complete record of a game of Planet Wars. It will be used primarily to visualize games so that end users can see a playback of their games. Since game playback information will be stored using a string of characters in a MySQL database, newline characters will not be used.
 
 There are two main sections, separated by vertical bar character ('|'). The first section is a description of the starting state of the game, which is just a list of planets. Planets are delimited from each other by colons (':'). The fields of the planets are delimited by commas (','). The second major section is a list of turns, delimited by colon characters. Each turn is composed of a list of orders, delimited by commas. An order is a triple of source.destination.numships, delimited by period characters as shown. For example, "0.1.13" means "send 13 ships from planet 0 to planet 1". For example, here is a simple playback:
 
