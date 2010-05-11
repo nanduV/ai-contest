@@ -1,5 +1,5 @@
-#summary The home page for all things to do with the Galcon contest.
+#summary The home page for all things to do with the Planet Wars contest.
 
-=Galcon=
+=Planet Wars=
 
-The Galcon programming contest will be based off of [http://www.galcon.com/flash/ this flash game]. It is a two-player game where each player controls a bunch of planets. The objective is to eventually take over all of the planets, thus eliminating the opponent.
+The Planet Wars programming contest will be based off of [http://www.galcon.com/flash/ this flash game]. It is a two-player game where each player controls a bunch of planets. The objective is to eventually take over all of the planets, thus eliminating the opponent.
