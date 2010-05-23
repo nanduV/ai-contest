@@ -2,13 +2,14 @@
 
 =Contest Architecture=
 
-How does the contest back-end work? What systems make up the contest back-end, and how do they fit together? Basically, here's what it looks like:
+This page is designed to answer the following questions:
+  * How does the contest back-end work?
+  * Which systems make up the contest back-end, and how do they fit together?
+  * When a contestant submits their code on the website, where does it go?
 
 http://csclub.uwaterloo.ca/~j3camero/ContestDataflow.png
 
 _The contest feedback loop. Users submit their code, and within minutes receive feedback in the form of updated rankings._
-
-==Individual Systems==
 
 The following is a list of the biggest systems that comprise the contest backend.
   * [Website]: the website is how users interact with the contest system.
