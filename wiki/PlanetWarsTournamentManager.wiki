@@ -1,0 +1,20 @@
+#summary Information about the Planet Wars Tournament Manager Script
+#labels planet_wars
+
+= Planet Wars Tournament Manager =
+
+This page discusses the Planet Wars Tournament Manager. It is a script that determines matchups between submissions for the current round and invokes the game engine with each matchup and collects the results.
+
+
+= What is the Tournament Manager? =
+It accesses the contest database once per round to get a list of current submission and generates pairs of submissions. Each pair of submissions is then sent to the game engine for gameplay. The tournament manager then interprets the results and adds an entry to the contest database for each game that occurs.
+
+= Invoking the Tournament Manager =
+Before invoking the tournament manager, there must be a file named db_stuff in the same directory as pw_mgr.py and it must contain exactly 4 lines in the following order:
+
+db_host
+db_name
+db_user
+db_password
+
+Where db_host is the name of the host where the database is stored, db_name is the name of the database, db_user is the username used to access the database and db_password is that user's password. 
