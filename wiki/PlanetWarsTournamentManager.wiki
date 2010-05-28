@@ -12,9 +12,11 @@ It accesses the contest database once per round to get a list of current submiss
 = Invoking the Tournament Manager =
 Before invoking the tournament manager, there must be a file named db_stuff in the same directory as pw_mgr.py and it must contain exactly 4 lines in the following order:
 
-db_host
-db_name
-db_user
-db_password
+dbhost<br>
+dbname<br>
+user<br>
+password<br>
 
-Where db_host is the name of the host where the database is stored, db_name is the name of the database, db_user is the username used to access the database and db_password is that user's password. 
+Where dbhost is the name of the host where the database is stored, dbname is the name of the database, user is the username used to access the database and password is that user's password. The lines may not contain any extra characters. 
+
+To invoke the tournament manager, type ./pw_mrg.py  
