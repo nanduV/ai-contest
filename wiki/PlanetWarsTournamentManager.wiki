@@ -19,4 +19,4 @@ password<br>
 
 Where dbhost is the name of the host where the database is stored, dbname is the name of the database, user is the username used to access the database and password is that user's password. The lines may not contain any extra characters. 
 
-To invoke the tournament manager, type ./pw_mrg.py  
+To invoke the tournament manager, type ./pw_mgr.py  
