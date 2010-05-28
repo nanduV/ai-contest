@@ -18,6 +18,13 @@ make
 cd planet_wars/engine
 ./engine ../maps/king_of_the_hill.txt 1000 100 . ./simple_bot . ./simple_bot
 }}}
+The above example plays a simple strategy against itself on a simple map.
+
 You can get some information about the arguments accepted by the engine by invoking it without any command-line arguments.
 
 ==Interpreting the Output of the Engine==
+
+The engine outputs general freeform text over the stderr channel. This is mostly debugging information, and can be safely ignored. The main engine output is through the stdout channel, and has a well-defined structure. Each line of output takes the following form:
+{{{
+name:value
+}}}
