@@ -1,0 +1,23 @@
+#summary Information about the Planet Wars game engine
+
+=Planet Wars Game Engine=
+
+This page discusses the Planet Wars game engine. How to invoke it, how to interpret its output. To be clear, this page is about the server-side game engine, not the Java game visualizer distributed with the starter packages.
+
+==What is the Game Engine?==
+
+The Planet Wars game engine is a program that plays a game given a map file and a list of bots. It is used to play tournaments between all the submissions that contestants in the AI contest have submitted on the website. The engine is part of the contest back-end. For a broader discussion of the entire contest back-end, see [ContestArchitecture this article].
+
+==Invoking the Engine==
+
+The engine only compiles and runs under linux-based systems. For best results, use Ubuntu or some similar operating system. Here's how to check out the code, compile it, and invoke the engine:
+{{{
+svn checkout http://ai-contest.googlecode.com/svn/trunk/ ai-contest-read-only
+cd ai-contest-read-only
+make
+cd planet_wars/engine
+./engine ../maps/king_of_the_hill.txt 1000 100 . ./simple_bot . ./simple_bot
+}}}
+You can get some information about the arguments accepted by the engine by invoking it without any command-line arguments.
+
+==Interpreting the Output of the Engine==
