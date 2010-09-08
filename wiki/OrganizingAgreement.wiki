@@ -14,7 +14,7 @@ This agreement is meant to make organizers/planning volunteers understand their 
 *This agreement does not apply to:*
  * frequent members of the forums
  * frequent irc users
- * contributers to the svn repository
+ * comiters to the svn repository
 
 By helping in this contest, volunteers need to understand the downsides of participating.
 
