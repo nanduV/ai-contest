@@ -9,9 +9,12 @@ This agreement is meant to make organizers/planning volunteers understand their 
 = Agreement =
 
 *This agreement applies to:*
- * Anyone with commit access on any relevant code repository in the last 12 months.
  * Anyone with physical access to the contest systems.
  * Anyone with official responsibilities related to the contest.
+*This agreement does not apply to:*
+ * frequent members of the forums
+ * frequent irc users
+ * contributers to the svn repository
 
 By helping in this contest, volunteers need to understand the downsides of participating.
 
