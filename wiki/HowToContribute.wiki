@@ -14,3 +14,22 @@ You are probably a participant in the AI Challenge. You have some coding experie
   # File an issue. If you find a problem with the contest or you have an idea to make it better, file an issue at http://code.google.com/p/ai-contest/issues/list. You will get a lot more attention if you create a patch file that improves the issue and attach it to the issue as you're filing it. Consult with people in the IRC channel as you go.
   # Fix someone else's issue. If you see an issue that has no patch file attached, and you think you know how to fix it, give it a try. Leave a comment on the issue and attach a patch file of your changes. People will love you if you do this.
   # Ask to become a committer. You can do this in the IRC channel. It's probably a good idea to contribute a few changes through patch files before asking for committer access.
+
+== For Contributors ==
+
+You want to contribute code to the contest, but you do not have committer access to the code repository.
+  # Check out the code
+  # Make your changes locally
+  # Test your changes
+  # Create a patch file
+  # Create an issue in the issue tracker with a detailed description of the problem you have solved, and attach the patch file.
+  # Get a committer to make a branch out of your patch, and start a code review on that branch.
+  # If the change is well received, an admin will merge it into trunk, and your changes will go live shortly afterwards.
+
+== For Committers ==
+
+*Do not ever commit any changes to the trunk.* The only people who are allowed to commit to trunk are contest admins. You have committer access, so you _can_ commit to trunk, but you must not. This is not because we don't trust you. You are a great coder, so you feel like you should be allowed to make a small change without bothering to create a whole new branch. But still, you won't do it. Sometimes you see a contest admin make little changes to trunk, but you will not do this, no matter how good a coder you are, and no matter how small a change you are making.
+
+Before you run _svn commit_ you must always go to the trunk directory and run _svn status_. If the output of _svn status_ is anything other than empty, it means you have accidentally changed the trunk. You must not commit.
+
+Instead of causing havoc by having a bunch of people all committing to trunk, here is what we will do. When you want to make a change, you must follow this procedure.
