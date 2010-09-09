@@ -128,10 +128,15 @@ def num_non_zero(a):
 # * sets the number of ships and owner of the planet according the outcome
 def fight_battle(pid, p, fleets):
   participants = {p["owner"]: p["num_ships"]}
-  for f in fleets:
+  for i in range (len(fleets) - 1, -1, -1):
+    f = fleets[i]
+    ow = f["owner"]
     if f["turns_remaining"] <= 0 and f["destination"] == pid:
-      ow = f["owner"]
-      participants[ow] = participants.get(ow, 0) + f["num_ships"]
+      if ow in participants:
+        participants[ow] += f["num_ships"]
+      else:
+        participants[ow] = f["num_ships"]
+      del fleets[i]
 
   winner = {"owner": 0, "ships": 0}
   second = {"owner": 0, "ships": 0}
