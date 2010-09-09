@@ -193,9 +193,13 @@ public class Game implements Cloneable {
       Fleet winner = new Fleet(0, 0);
       Fleet second = new Fleet(0, 0);
       for (Map.Entry<Integer, Integer> f : participants.entrySet()) {
-        if (f.getValue() >= winner.NumShips()) {
-          second = winner;
-          winner = new Fleet(f.getKey(), f.getValue());
+        if (f.getValue() > second.NumShips()) {
+          if(f.getValue() > winner.NumShips()) {
+            second = winner;
+            winner = new Fleet(f.getKey(), f.getValue());
+          } else {
+            second = new Fleet(f.getKey(), f.getValue());
+          }
         }
       }
 

@@ -142,9 +142,12 @@ def fight_battle(pid, p, fleets):
   winner = {"owner": 0, "ships": 0}
   second = {"owner": 0, "ships": 0}
   for owner, ships in participants.items():
-    if ships >= winner["ships"]:
-      second = winner
-      winner = {"owner": owner, "ships": ships}
+    if ships >= second["ships"]:
+      if ships >= winner["ships"]:
+        second = winner
+        winner = {"owner": owner, "ships": ships}
+      else:
+        second = {"owner": owner, "ships": ships}
 
   if winner["ships"] > second["ships"]:
     p["num_ships"] = winner["ships"] - second["ships"]
