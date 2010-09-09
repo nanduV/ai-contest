@@ -1,0 +1,16 @@
+#summary a page with procedures for contributing code to the contest.
+
+= How to Contribute =
+
+You are here because you want to help improve the contest for the benefit of all. This is a Noble quest, and your efforts are fully encouraged. Here are a few tips and rules, to help keep things from descending into chaos. Please follow them religiously.
+
+== For People Who Are New to the Project ==
+
+You are probably a participant in the AI Challenge. You have some coding experience, and you want to help make the contest better. But you don't know any contest administrators, committers, or contributors. You're not quite sure how to get "in" to the project so that you can start contributing code. This section is for you. Here is how to get "in".
+  # Download an IRC client. This is a program that will allow you to chat with other people working on the contest.
+  # Use your IRC client to connect to irc.freenode.net. Join the room #aichallenge. This is where you will find other contestants, committers, and admins hanging out. Introduce yourself, tell everyone what you want, and ask some questions. Get to know people.
+  # Read the ai-contest project Wiki. You don't have to read it all. Just the stuff that you're curious about. Nothing formal.
+  # Check out the source code and explore it. You can find instructions about how to check out the code under the Source tab.
+  # File an issue. If you find a problem with the contest or you have an idea to make it better, file an issue at http://code.google.com/p/ai-contest/issues/list. You will get a lot more attention if you create a patch file that improves the issue and attach it to the issue as you're filing it. Consult with people in the IRC channel as you go.
+  # Fix someone else's issue. If you see an issue that has no patch file attached, and you think you know how to fix it, give it a try. Leave a comment on the issue and attach a patch file of your changes. People will love you if you do this.
+  # Ask to become a committer. You can do this in the IRC channel. It's probably a good idea to contribute a few changes through patch files before asking for committer access.
