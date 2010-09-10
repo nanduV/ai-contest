@@ -99,10 +99,10 @@ public class Engine {
 		}
 	    }
 	    // Get orders from the clients.
-	    StringBuilder[] buffers = new StringBuilder[clients.size()];
+	    String[] buffers = new String[clients.size()];
 	    boolean[] clientDone = new boolean[clients.size()];
 	    for (int i = 0; i < clients.size(); ++i) {
-		buffers[i] = new StringBuilder();
+		buffers[i] = "";
 		clientDone[i] = false;
 	    }
 	    long startTime = System.currentTimeMillis();
@@ -119,7 +119,7 @@ public class Engine {
 			while (inputStream.available() > 0) {
 			    char c = (char)inputStream.read();
 			    if (c == '\n') {
-				String line = buffers[i].toString();
+				String line = buffers[i];
 				//System.err.println("P" + (i+1) + ": " + line);
 				line = line.toLowerCase().trim();
 				game.WriteLogMessage("player" + (i + 1) + " > engine: " + line);
@@ -128,9 +128,9 @@ public class Engine {
 				} else {
 				    game.IssueOrder(i + 1, line);
 				}
-				buffers[i] = new StringBuilder();
+				buffers[i] = new String("");
 			    } else {
-				buffers[i].append(c);
+				buffers[i] += c;
 			    }
 			}
 		    } catch (Exception e) {
