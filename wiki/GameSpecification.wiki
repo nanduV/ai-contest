@@ -1,5 +1,7 @@
 #summary Detailed description of the Planet Wars mechanics
 
+<wiki:toc max_depth="3" />
+
 = Overview =
 
 Planet Wars is a game based on [http://www.galcon.com Galcon], designed to be a simpler target for bots. The contest version of the game is for two players.
