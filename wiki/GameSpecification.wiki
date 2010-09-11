@@ -166,6 +166,8 @@ Each group of two or three fighting ships cancels out. In this battle, player 1 
 
 If we apply the original procedure to the above battle, we use the three-way rules. The two largest forces are player 1's and player 2's. The winner must be player 1 because he has the most ships, and we subtract player 2's ships from player 1's to obtain the new ship count, 5-4 = 1.
 
+In actuality, all three cases for one, two and three forces follow the same procedure. In all cases, the largest force wins, and the second largest force is subtracted from the first, and in the case of a tie the original owner keeps the planet with zero ships remaining. A critical detail is that if forces completely cancel out then the original owner retains the planet.
+
 = Endgame Conditions =
 
 = More Information =
