@@ -170,6 +170,17 @@ In actuality, all three cases for one, two and three forces follow the same proc
 
 = Endgame Conditions =
 
+The following conditions will cause the game to end:
+
+  * The turn limit is reached. The winner is the player with the most ships, both on planets and in fleets. If both players have the same number of ships, it's a draw.
+  * One player runs out of ships entirely. The winner is the other player.
+  * Both players run out of ships at the same time. The game is a draw.
+  * A bot issues a command with the same source and destination planet and forfeits the game.
+  * A bot sends invalid data and forfeits the game.
+  * A bot crashes and forfeits the game.
+  * A bot exceeds the time limit without completing its orders is disqualified. This is perhaps overly harsh, but is the way it currently works. It may change in the future to simply be a forfeit.
+  * A bot attempts to do something that the tournament manager deems a security issue and is disqualified.
+
 = More Information =
 
 If you have a question about the game mechanics, you may ask in the [http://ai-contest.com/forum/ forums], in the #aichallenge IRC channel on Freenode, or go straight to the contest's [http://code.google.com/p/ai-contest/source/browse/#svn/trunk/planet_wars source code].
