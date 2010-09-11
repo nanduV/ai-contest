@@ -16,19 +16,19 @@ Maps have no particular dimensions and are defined completely in terms of the pl
 
 == Planets ==
 
-Planet *positions* are specified relative to a common origin in Euclidean space. The coordinates are given as floating point numbers. Planets never move. Planets are not allowed to occupy the exact same position.
+Planet *positions* are specified relative to a common origin in Euclidean space. The coordinates are given as floating point numbers. Planets never move and are never added or removed as the game progresses. Planets are not allowed to occupy the exact same position on the map.
 
-The *owner* of a planet can be neutral, player 1, or player 2. Players always see themselves as player 1 and their opponents as player 2. The engine works out how to display the world differently to each player. The owner is given as an integer with the following mapping:
+The *owner* of a planet can be neutral, player 1, or player 2. Players always see themselves as player 1 and their opponents as player 2. The engine works out how to display the world differently to each player. The owner of a planet can change throughout the game. The owner is given as an integer with the following mapping:
 
   * 0 means neutral
   * 1 means player 1
   * 2 means player 2
 
-The *number of ships* is given as an integer.
+The *number of ships* is given as an integer, and it may change throughout the game.
 
 The *growth rate* of the planet is the number of ships added to the planet after each turn. If the planet is currently owned by neutral, the growth rate is not applied. Only players can get new ships through growth. The growth rate of a planet will never change. It is given as an integer.
 
-Each planet is also implicitly assigned an *ID*. These are assigned as integers according to the order in which the planets are specified in the map, starting from 0.
+Each planet is also implicitly assigned an *ID*. These are assigned as integers according to the order in which the planets are specified in the map, starting from 0. A planet's ID will never change throughout the game.
 
 == Fleets ==
 
@@ -106,7 +106,7 @@ F 2 28 1 2  8 4     # Player two has sent some ships to take over the neutral pl
 go
 }}}
 
-It's unlikely that the engine will include comments in this output, but I wouldn't rely on it not to.
+It's unlikely that the engine will include comments in this output, but I wouldn't rely on it not to. Note also that because planet IDs never change, the planets in the bot input will be in the same order from turn to turn.
 
 Once the engine starts sending the game state to the bots, the bots each have 1 second of wall-clock time to receive the game state, process it, and send their orders. (The first turn is an exception, in which case the bots have 3 seconds of wall-clock time. This is to help bots written in languages whose VMs need some "warm-up" time.) Both bots perform these operations concurrently, and they are each unaware of what the other bot is doing. The choice of using wall-clock time rather than CPU time is primarily due to technical difficulties in measuring child processes' CPU times in real time. If a simple way to monitor CPU time instead is discovered, this part of the spec may change.
 
