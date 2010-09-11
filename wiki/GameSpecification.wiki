@@ -86,6 +86,8 @@ The game engine performs the following steps repeatedly:
 
 There is an unspecified maximum turn limit. At the time of this writing, the maximum is 200 turns, but this may change. The intent is to have this number nailed down later in the contest period.
 
+A *turn* is defined as the above four steps. They are performed up to 200 times and then the game stops. This means that the players receive the game state up to 200 times and send sets of orders up to 200 times.
+
 == Bot I/O ==
 
 The engine on the official server launches your bot in a sandbox environment and communicates with it via stdin and stdout. It silently absorbs your stderr stream, and your bot is prohibited from writing to files. A single game is a single instance of your bot process. That it, the same bot process is used from turn to turn in a single game, but an entirely different process is used for a new game. The unofficial engines may have their own ways of handling these things, so if you are testing with a different engine you are responsible for being aware of these details on a per case basis.
