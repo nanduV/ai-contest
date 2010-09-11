@@ -1,0 +1,86 @@
+#summary Detailed description of the Planet Wars mechanics
+
+= Overview =
+
+Planet Wars is a game based on [http://www.galcon.com Galcon], designed to be a simpler target for bots. The contest version of the game is for two players.
+
+A game of Planet Wars takes place on a map which contains several planets, each of which has some number of ships on it. Each planet may have a different number of ships. The planets may belong to one of three different owners: you, your opponent, or neutral. The game has a certain maximum number of turns. At the time of this writing, the maximum number of turns on the official server is 200, but it is not yet a part of the specification. Provided that neither player performs an invalid action, the player with the most ships at the end of the game wins. The game may also end earlier if one of the players loses all his ships, in which case the player that has ships remaining wins instantly. If both players have the same number of ships when the game ends, it's a draw.
+
+On each turn, the player may choose to send fleets of ships from any planet he owns to any other planet on the map. He may send as many fleets as he wishes on a single turn as long as he has enough ships to supply them. After sending fleets, each planet owned by a player (not owned by neutral) will increase the forces there according to that planet's "growth" rate. Different planets have different growth rates. The fleets will then take some number of turns to reach their destination planets, where they will then fight any opposing forces there and, if they win, take ownership of the planet. Fleets cannot be redirected during travel. Players may continue to send more fleets on later turns even while older fleets are in transit.
+
+= The Map =
+
+Maps have no particular dimensions and are defined completely in terms of the planets and fleets in them.
+
+== Planets ==
+
+Planet *positions* are specified relative to a common origin in Euclidean space. The coordinates are given as floating point numbers. Planets never move.
+
+The *owner* of a planet can be neutral, player 1, or player 2. Players always see themselves as player 1 and their opponents as player 2. The engine works out how to display the world differently to each player. The owner is given as an integer with the following mapping:
+
+  * 0 means neutral
+  * 1 means player 1
+  * 2 means player 2
+
+The *number of ships* is given as an integer.
+
+The *growth rate* of the planet is the number of ships added to the planet after each turn. If the planet is currently owned by neutral, the growth rate is not applied. Only players can get new ships through growth. The growth rate of a planet will never change. It is given as an integer.
+
+Each planet is also implicitly assigned an *ID*. These are assigned as integers according to the order in which the planets are specified in the map, starting from 0.
+
+== Fleets ==
+
+The *owner* is represented in the same way as for planets, and the *number of ships* is again an integer.
+
+The *source planet* and *destination planet* are specified according to the planets' IDs as specified above.
+
+The *total trip length* is given as an integer, representing the total number of turns required to make the trip from source to destination. The *turns remaining* is also an integer, representing the number of turns left from the current turn to arrive at the destination. Trip lengths are determined at the time of departure by taking the Euclidean distance of the destination from the source and rounding up.
+
+== File Format ==
+
+The map file format is very simple. Each line may be blank, a planet, or a fleet. `#` characters and everything after them are treated as white space (comments), so a line beginning with a `#` character is considered blank, too.
+
+Planet lines have the following format:
+
+{{{
+P <x:float> <y:float> <owner:int> <ships:int> <growth:int>
+}}}
+
+Fleet lines have the following format:
+
+{{{
+F <owner:int> <ships:int> <source:int> <destination:int> <total_turns:int> <remaining_turns:int>
+}}}
+
+Here is an example of a valid map:
+
+{{{
+# Example map
+
+P 0    0    1 34 2  # Player one's home planet.
+P 7    9    2 34 2  # Player two's home planet.
+P 3.14 2.71 0 15 5  # A neutral planet with real-number coordinates.
+
+F 1 15 0 1 12 2     # Player one has sent some ships to attack player two.
+F 2 28 1 2  8 4     # Player two has sent some ships to take over the neutral planet.
+}}}
+
+In the above example, player 1's planet has ID 0, player 2's planet has ID 1, and the neutral planet has ID 2. In addition to the forces owned by each of the two players on the planets themselves, the two players each have fleets in transit. Player 1 has a fleet of 15 ships that is about to arrive at player 2's home planet. Player 2 has a fleet of 28 ships that is half way to the neutral planet.
+
+== About the Current Maps ==
+
+Most maps on the server and in the starter packs were generated programmatically by a [http://code.google.com/p/ai-contest/source/browse/trunk/planet_wars/backend/map_generator.py Python script]. You may also create your own to use for testing.
+
+= Turns =
+
+== Player Actions ==
+
+== Game State Update ==
+
+=== Engagement ===
+
+= Endgame Conditions =
+
+= More Information =
+
+If you have a question about the game mechanics, you may ask in the [http://ai-contest.com/forum/ forums], in the #aichallenge IRC channel on Freenode, or go straight to the contest's [http://code.google.com/p/ai-contest/source/browse/#svn/trunk/planet_wars source code].
