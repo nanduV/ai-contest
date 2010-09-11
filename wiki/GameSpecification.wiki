@@ -164,7 +164,7 @@ There is an intuitive way to understand these rules. Let's look at the rules wit
   * P1 vs. P2
   * P1
 
-Each group of two or three fighting ships cancels out. In this battle, player 1 win with a single ship left.
+Each group of two or three fighting ships cancels out. In this battle, player 1 wins with a single ship left.
 
 If we apply the original procedure to the above battle, we use the three-way rules. The two largest forces are player 1's and player 2's. The winner must be player 1 because he has the most ships, and we subtract player 2's ships from player 1's to obtain the new ship count, 5-4 = 1.
 
