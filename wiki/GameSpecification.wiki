@@ -130,7 +130,13 @@ That means the bot wants to send 50 ships from planet 1 to planet 17 and 50 ship
 
 == Game State Update ==
 
-=== Battles ===
+After receiving complete lists of commands from the players, the engine then updates the game state, advancing the game to the next turn. This happens in three phases: departure, growth, and arrival.
+
+=== Departure ===
+
+=== Growth ===
+
+=== Arrival ===
 
 = Endgame Conditions =
 
