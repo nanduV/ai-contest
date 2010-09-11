@@ -110,33 +110,34 @@ def issue_order(order, player_id, planets, fleets, temp_fleets):
   if num_ships < 0:
     return False
   source_planet["num_ships"] -= num_ships
-  if owner not in temp_fleets:
-    temp_fleets[owner] = {}
-  if src not in temp_fleets[owner]:
-    temp_fleets[owner][src] = {}
-  if dest not in temp_fleets[owner][src]:
-    temp_fleets[owner][src][dest] = 0
-  temp_fleets[owner][src][dest] += num_ships
+  if src not in temp_fleets:
+    temp_fleets[src] = {}
+  if dest not in temp_fleets[src]:
+    temp_fleets[src][dest] = 0
+  temp_fleets[src][dest] += num_ships
   return True
 
 # Processes fleets launched this turn into the normal
 # fleets array.
 def process_new_fleets(planets, fleets, temp_fleets):
-  for owner, srcd in temp_fleets.iteritems():
-    for src, destd in srcd.iteritems():
-      source_planet = planets[src]
-      for dest, num_ships in destd.iteritems():
-        if num_ships > 0:
-          destination_planet = planets[dest]
-          t = travel_time(source_planet, destination_planet)
-          fleets.append({
-            "source" : src,
-            "destination" : dest,
-            "num_ships" : num_ships,
-            "owner" : owner,
-            "total_trip_length" : t,
-            "turns_remaining" : t
-          })
+  for src, destd in temp_fleets.iteritems():
+    source_planet = planets[src]
+    owner = source_planet["owner"]
+    if owner == 0:
+      # player launched fleets then died, so "erase" these fleets
+      continue
+    for dest, num_ships in destd.iteritems():
+      if num_ships > 0:
+        destination_planet = planets[dest]
+        t = travel_time(source_planet, destination_planet)
+        fleets.append({
+          "source" : src,
+          "destination" : dest,
+          "num_ships" : num_ships,
+          "owner" : owner,
+          "total_trip_length" : t,
+          "turns_remaining" : t
+        })
 
 # "a" is an array. This method returns the number of non-zero elements in a.
 def num_non_zero(a):
@@ -346,15 +347,11 @@ def play_game(map, max_turn_time, max_turns, players, debug=False):
               "an unparseable order: " + line + "\n")
             c.kill()
             kick_player_from_game(i+1, planets, fleets)
-            if i+1 in temp_fleets:
-              del temp_fleets[i+1]
           else:
             if not issue_order(order, i+1, planets, fleets, temp_fleets):
               sys.stderr.write("player %d bad order: %s\n" % (i+1, line))
               c.kill()
               kick_player_from_game(i+1, planets, fleets)
-              if i+1 in temp_fleets:
-                del temp_fleets[i+1]
             elif debug:
               sys.stderr.write("player " + str(i+1) + " order: " + line + "\n")
       time.sleep(0)
