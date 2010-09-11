@@ -4,7 +4,7 @@
 
 = Overview =
 
-Planet Wars is a game based on [http://www.galcon.com Galcon], designed to be a simpler target for bots. The contest version of the game is for two players.
+Planet Wars is a game based on [http://www.galcon.com Galcon], but is designed to be a simpler target for bots. The contest version of the game is for two players.
 
 A game of Planet Wars takes place on a map which contains several planets, each of which has some number of ships on it. Each planet may have a different number of ships. The planets may belong to one of three different owners: you, your opponent, or neutral. The game has a certain maximum number of turns. At the time of this writing, the maximum number of turns on the official server is 200, but it is not yet a part of the specification. Provided that neither player performs an invalid action, the player with the most ships at the end of the game wins. The game may also end earlier if one of the players loses all his ships, in which case the player that has ships remaining wins instantly. If both players have the same number of ships when the game ends, it's a draw.
 
@@ -116,7 +116,7 @@ An "order" is a line of text that the bot sends to the engine to make a fleet de
 <source:int> <destination:int> <ships:int>
 }}}
 
-If the source and destination planets are the same, the bot instantly loses the game. If the number of ships is greater than is available at the source planet, the bot instantly loses the game. The bot may issues as many orders in a single turn as it likes so long as the sum of all ships in fleets leaving a planet is not greater than the ships residing on the planet.
+If the source and destination planets are the same, the bot instantly loses the game. If the number of ships is greater than is available at the source planet, the bot instantly loses the game. If the bot doesn't own the source planet, the bot instantly loses the game. The bot may issues as many orders in a single turn as it likes so long as the sum of all ships in fleets leaving a planet is not greater than the ships residing on the planet.
 
 When the bot is done issuing commands to the engine, it sends a single "`go`" line. Here is an example of the output from a bot for a single turn:
 
@@ -130,13 +130,41 @@ That means the bot wants to send 50 ships from planet 1 to planet 17 and 50 ship
 
 == Game State Update ==
 
-After receiving complete lists of commands from the players, the engine then updates the game state, advancing the game to the next turn. This happens in three phases: departure, growth, and arrival.
+After receiving complete lists of commands from the players, the engine then updates the game state, advancing the game to the next turn. This happens in three phases: departure, advancement, and arrival.
 
 === Departure ===
 
-=== Growth ===
+In this phase, the players' commands are carried out. This consists of creating new fleets and removing the appropriate numbers of ships from each planet.
+
+=== Advancement ===
+
+This phase advances fleets and grows populations. Fleets are advanced by simply decrementing their "turns remaining" values.
+
+For each planet, if it is owned by a player, its growth rate is added to its number of ships. For example, if the planet is owned by player 1, has 4 ships, and has a growth rate of 2, the planet will next have 6 ships, still having its growth rate of 2 and still being owned by player 1. However, had the planet been owned by neutral instead, its population would not have grown.
 
 === Arrival ===
+
+This phase handles fleets whose "turns remaining" became zero during the advancement phase. It does so by considering each destination planet at a time.
+
+For each planet, consider its owner and ship count along with the owners and ship counts of each fleet. We will call each of these groups a "force." Combine the forces according to their owners. For example, if the planet is owner by player 1 with a population of 5 ships, two of player 1's fleets are arriving with 3 ships each, and two of player 2's fleets are arriving with 5 ships each, the result of this operation gives us a force owned by player 1 consisting of 11 ships and a force owned by player 2 consisting of 10 ships.
+
+If there is only one force, that is the new occupation of the planet.
+
+If there are two forces, the new owner of the planet is the owner of the largest force, and the losing player's ship count is subtracted from the winning player's ship count as the new population. However, if both forces are the same size, then the winner is the original owner of the planet, and the planet's new ship count is zero.
+
+If the original owner of the planet was neutral, then it is possible for there to be three forces fighting for one planet. In this case, the owner of the largest force is the new owner of the planet, and his ship count is reduced by the number of ships in the second largest force. If the top two forces are the same size, the original owner retains ownership of the planet but the forces are set to zero.
+
+There is an intuitive way to understand these rules. Let's look at the rules with an example. Say player 1 has a force of 5 ships, player 2 has a force of 4 ships, and neutral has a force of 3 ships. We create groups of units that will battle, each group consisting of two ships from different forces or of three ships all from different forces. In this case, the division is as follows:
+
+  * P1 vs. P2 vs. N
+  * P1 vs. P2 vs. N
+  * P1 vs. P2 vs. N
+  * P1 vs. P2
+  * P1
+
+Each group of two or three fighting ships cancels out. In this battle, player 1 win with a single ship left.
+
+If we apply the original procedure to the above battle, we use the three-way rules. The two largest forces are player 1's and player 2's. The winner must be player 1 because he has the most ships, and we subtract player 2's ships from player 1's to obtain the new ship count, 5-4 = 1.
 
 = Endgame Conditions =
 
