@@ -28,7 +28,7 @@ The *number of ships* is given as an integer.
 
 The *growth rate* of the planet is the number of ships added to the planet after each turn. If the planet is currently owned by neutral, the growth rate is not applied. Only players can get new ships through growth. The growth rate of a planet will never change. It is given as an integer.
 
-Each planet is also implicitly assigned an *ID*. These are assigned as integers according to the order in which the planets are specified in the map, starting from 1.
+Each planet is also implicitly assigned an *ID*. These are assigned as integers according to the order in which the planets are specified in the map, starting from 0.
 
 == Fleets ==
 
@@ -118,7 +118,7 @@ An "order" is a line of text that the bot sends to the engine to make a fleet de
 
 If the source and destination planets are the same, the bot instantly loses the game. If the number of ships is greater than is available at the source planet, the bot instantly loses the game. The bot may issues as many orders in a single turn as it likes so long as the sum of all ships in fleets leaving a planet is not greater than the ships residing on the planet.
 
-When the bot is done issuing commands to the engine, it sends a single "`go`" line. Here an example of the output from a bot for a single turn:
+When the bot is done issuing commands to the engine, it sends a single "`go`" line. Here is an example of the output from a bot for a single turn:
 
 {{{
 1 17 50
