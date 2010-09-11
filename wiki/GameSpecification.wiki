@@ -90,7 +90,7 @@ A *turn* is defined as the above four steps. They are performed up to 200 times 
 
 == Bot I/O ==
 
-The engine on the official server launches your bot in a sandbox environment and communicates with it via stdin and stdout. It silently absorbs your stderr stream, and your bot is prohibited from writing to files. A single game is a single instance of your bot process. That it, the same bot process is used from turn to turn in a single game, but an entirely different process is used for a new game. The unofficial engines may have their own ways of handling these things, so if you are testing with a different engine you are responsible for being aware of these details on a per case basis.
+The engine on the official server launches your bot in a sandbox environment and communicates with it via stdin and stdout. It silently absorbs your stderr stream, and your bot is prohibited from writing to files. A single game is a single instance of your bot process. That is, the same bot process is used from turn to turn in a single game, but an entirely different process is used for a new game. The unofficial engines may have their own ways of handling these things, so if you are testing with a different engine you are responsible for being aware of these details on a per case basis.
 
 At the beginning of each turn, the engine sends the map state to both bots. The format of this map is the same as the map file format specified under "The Map" section above. The end of the game state is denoted by a single line containing the text "`go`". For example, the same map example from earlier might look like this:
 
