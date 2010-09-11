@@ -118,7 +118,7 @@ An "order" is a line of text that the bot sends to the engine to make a fleet de
 <source:int> <destination:int> <ships:int>
 }}}
 
-If the source and destination planets are the same, the bot instantly loses the game. If the number of ships is greater than is available at the source planet, the bot instantly loses the game. If the bot doesn't own the source planet, the bot instantly loses the game. The bot may issues as many orders in a single turn as it likes so long as the sum of all ships in fleets leaving a planet is not greater than the ships residing on the planet.
+If the source and destination planets are the same, the bot instantly loses the game. If the number of ships is greater than is available at the source planet, the bot instantly loses the game. If the bot doesn't own the source planet, the bot instantly loses the game. The bot may issue as many orders in a single turn as it likes so long as the sum of all ships in fleets leaving a planet is not greater than the ships residing on the planet.
 
 When the bot is done issuing commands to the engine, it sends a single "`go`" line. Here is an example of the output from a bot for a single turn:
 
