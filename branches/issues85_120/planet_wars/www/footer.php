@@ -28,6 +28,7 @@
     <ul>
       <li><a href="faq.php">Frequently Asked Questions</a></li>
       <li><a href="forum/">Forum</a></li>
+      <li><a href="http://webchat.freenode.net/?channels=aichallenge&uio=d4">IRC</a></li>
     </ul>
     <h1>Galcon</h1>
     <ul>
