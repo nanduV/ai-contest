@@ -178,7 +178,7 @@ The following conditions will cause the game to end:
   * A bot issues a command with the same source and destination planet and forfeits the game.
   * A bot sends invalid data and forfeits the game.
   * A bot crashes and forfeits the game.
-  * A bot exceeds the time limit without completing its orders and is disqualified. This is perhaps overly harsh, but is the way it currently works. It may change in the future to simply be a forfeit.
+  * A bot exceeds the time limit without completing its orders (it never sends a line that says "`go`") and is disqualified. This is perhaps overly harsh, but is the way it currently works. It may change in the future to simply be a forfeit.
   * A bot attempts to do something that the tournament manager deems a security issue and is disqualified.
 
 = More Information =
