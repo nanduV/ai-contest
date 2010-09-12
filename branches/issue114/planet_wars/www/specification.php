@@ -359,7 +359,7 @@ go
 ><p
 >If you have a question about the game mechanics, you may ask in the <a href="http://ai-contest.com/forum/"
   >forums</a
-  >, in the #aichallenge IRC channel on Freenode, or go straight to the contest’s <a href="http://code.google.com/p/ai-contest/source/browse/#svn/trunk/planet_wars"
+  >, ask in the #aichallenge IRC channel on Freenode, or go straight to the contest’s <a href="http://code.google.com/p/ai-contest/source/browse/#svn/trunk/planet_wars"
   >source code</a
   >.</p
 >
