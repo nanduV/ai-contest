@@ -40,7 +40,7 @@ The *total trip length* is given as an integer, representing the total number of
 
 == File Format ==
 
-The map file format is very simple. Each line may be blank, a planet, or a fleet. `#` characters and everything after them are treated as white space (comments), so a line beginning with a `#` character is considered blank, too.
+The map file format is fairly simple. Each line may be blank, a planet, or a fleet, and each line is separated by Unix style line breaks. `#` characters and everything after them are treated as white space (comments), so a line beginning with a `#` character is considered blank, too.
 
 Planet lines have the following format:
 
