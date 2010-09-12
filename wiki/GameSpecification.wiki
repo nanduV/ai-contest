@@ -21,8 +21,8 @@ Planet *positions* are specified relative to a common origin in Euclidean space.
 The *owner* of a planet can be neutral, player 1, or player 2. Players always see themselves as player 1 and their opponents as player 2. The engine works out how to display the world differently to each player. The owner of a planet can change throughout the game. The owner is given as an integer with the following mapping:
 
   * 0 means neutral
-  * 1 means player 1
-  * 2 means player 2
+  * 1 means player 1 (yourself, from your point of view)
+  * 2 means player 2 (your opponent, from your point of view)
 
 The *number of ships* is given as an integer, and it may change throughout the game.
 
