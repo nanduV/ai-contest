@@ -19,4 +19,13 @@ Each of the servers could have a sandbox setup, and have the main server ssh in 
 
 = Bandwidth Usage Estimate =
 
-A glance at the existing submissions reveals that a safe upper bound on the average size of an uncompressed submission is 1 MB. As of right now, we are averaging about 12 games per minute. Call it 15. Therefore the bandwidth per month would be 2bots/game * 1MB/bot * 15games/minute * 60minutes/hour * 24hours/day * 30days/month = 1296000 MB/month = 1.296 TB/month. This is a sizeable portion of our allowed bandwidth per month (currently 4 TB/month). It's a risk that we might use too much bandwidth, but we won't risk going over our cap in the first few days. Therefore it is not very risky to implement decentralization right now. Also, we can probably get scp to do a bit of compression on the bots to reduce the impact.
+A glance at the existing submissions reveals that a safe upper bound on the average size of an uncompressed submission is 1 MB.
+
+==Sandboxes==
+Bandwidth cost for *each sandbox* from nodes (assuming 1MB/bot and 100 steps(1 second each)/game):
+*26.2GB*: http://www.wolframalpha.com/input/?i=1MB+/+(1sec+*++100)+*+month
+
+==Main Server==
+As of right now, we are averaging about 12 games per minute. Call it 15. Therefore the bandwidth would be *1.296 TB/month*: http://www.wolframalpha.com/input/?i=(2+*+1MB+*+15/minute)+*+month.
+
+This is a sizeable portion of our allowed bandwidth per month (currently 4 TB/month). It's a risk that we might use too much bandwidth, but we won't risk going over our cap in the first few days. Therefore it is not very risky to implement decentralization right now. Also, we can probably get scp to do a bit of compression on the bots to reduce the impact.
