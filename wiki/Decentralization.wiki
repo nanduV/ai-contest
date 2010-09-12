@@ -26,6 +26,8 @@ Bandwidth cost for *each sandbox* from nodes (assuming 1MB/bot and 100 steps(1 s
 
 *26.2GB*: http://www.wolframalpha.com/input/?i=1MB+/+(1sec+*++100)+*+month
 
+*Note:* This figure can go up dramatically because bots might be a lot faster than 1 second per turn.
+
 Multiply this by the number of sandboxes you want to have on your node.
 
 ==Main Server==
