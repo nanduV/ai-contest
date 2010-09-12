@@ -1,0 +1,18 @@
+#summary How to get the contest run on multiple servers.
+
+= Introduction =
+
+My idea is basically to stop running the bots on our only server available.
+Move all the sandboxes on other servers that were volunteered, these servers don't necessarily need a lot of bandwidth(ex: hypertriangle.com, corn-syrup, a few others). The main server can still have mysqld, httpd and the Tournament Manager, but it doesn't have to consume its CPU for the bots.
+
+
+= Details =
+Each of the servers could have a sandbox setup, and have the main server ssh in a sandbox, copy the bot in it, then run it. Each volunteered node could have multiple of these sandboxes. Example: ssh hypertriangle.com -p 4201 could access the first sandbox on hypertriangle.
+
+
+= Issues =
+ * Uploading/Dowloading of bots to the sandboxes could consume too much bandwidth for the main server. *Comeback:* bandwidth for the server is 4TB/month, bandwidth for hypertriangle is 200GB/month, the nodes will have that issue much sooner.
+
+*Implication for node owners:*
+ * They can't compete.
+ * There might be security problems associated with this.
