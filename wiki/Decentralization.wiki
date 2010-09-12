@@ -23,7 +23,9 @@ A glance at the existing submissions reveals that a safe upper bound on the aver
 
 ==Sandboxes==
 Bandwidth cost for *each sandbox* from nodes (assuming 1MB/bot and 100 steps(1 second each)/game):
+
 *26.2GB*: http://www.wolframalpha.com/input/?i=1MB+/+(1sec+*++100)+*+month
+
 Multiply this by the number of sandboxes you want to have on your node.
 
 ==Main Server==
