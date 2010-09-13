@@ -73,7 +73,9 @@ $games_query = <<<EOT
     games g
     inner join submissions s on s.submission_id = g.loser
     inner join users u on u.user_id = s.user_id
-    where g.winner= $submission)
+    where g.winner= $submission
+    and g.timestamp > timestampadd(DAY, -1, current_timestamp)
+    )
 union
 (select
     u.username as opp_name,
@@ -88,7 +90,9 @@ union
     games g
     inner join submissions s on s.submission_id = g.winner
     inner join users u on u.user_id = s.user_id
-    where g.loser = $submission)
+    where g.loser = $submission
+    and g.timestamp > timestampadd(DAY, -1, current_timestamp)
+    )
 union
 (select
     u.username as opp_name,
@@ -101,10 +105,12 @@ union
     'Draw' as outcome
     from
     games g
-    inner join submissions s on s.submission_id = g.player_one
+    inner join submissions s on s.submission_id = g.winner
     inner join users u on u.user_id = s.user_id
-    where g.player_two = $submission
-    and g.draw = 1)
+    where g.winner = $submission
+    and g.draw = 1
+    and g.timestamp > timestampadd(DAY, -1, current_timestamp)
+    )
 union
 (select
     u.username as opp_name,
@@ -117,10 +123,12 @@ union
     'Draw' as outcome
     from
     games g
-    inner join submissions s on s.submission_id = g.player_two
+    inner join submissions s on s.submission_id = g.loser
     inner join users u on u.user_id = s.user_id
-    where g.player_one = $submission
-    and g.draw = 1)
+    where g.loser = $submission
+    and g.draw = 1
+    and g.timestamp > timestampadd(DAY, -1, current_timestamp)
+    )
 order by
     timestamp desc
 EOT;
