@@ -32,7 +32,7 @@ function logged_in_with_valid_credentials() {
 }
 
 function logged_in_as_admin() {
-  return isset($_SESSION['user_id']) && isset($_SESSION['admin']);
+  return isset($_SESSION['user_id']) && isset($_SESSION['admin']) && $_SESSION['admin'] == 1;
 }
 
 function current_username() {
