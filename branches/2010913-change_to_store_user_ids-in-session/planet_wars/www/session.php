@@ -14,7 +14,8 @@ function check_credentials($username, $md5password) {
         FROM users u 
         WHERE
             username='$username' AND 
-            password='$md5password'";
+            password='$md5password' AND
+            activated = 1";
   $result = mysql_query($query);
     if( $user = mysql_fetch_assoc( $result ) ) {
         $_SESSION['username']   = $user['username'];
