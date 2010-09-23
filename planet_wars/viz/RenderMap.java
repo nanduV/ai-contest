@@ -26,31 +26,34 @@ public class RenderMap {
                 System.err.println("USAGE: java RenderMap map.txt image.png");
 				System.exit(1);
             }
-            Game game = new Game(args[0], 100, 0);
+            Game game = new Game(args[0], 100, 0, "log.txt");
             if (game.Init() == 0) {
                 System.err.println("Error while loading map " + args[0]);
                 System.exit(1);
             }
-			
+
 			ArrayList<Color> colors = new ArrayList<Color>();
-			colors.add(new Color(106, 74, 60));
-			colors.add(new Color(74, 166, 60));
-			colors.add(new Color(204, 51, 63));
-			colors.add(new Color(235, 104, 65));
-			colors.add(new Color(237, 201, 81)	);
-			Color bgColor = new Color(188, 189, 172);
-			Color textColor = Color.BLACK;
-			Font planetFont = new Font("Sans Serif", Font.BOLD, 11);
-			Font fleetFont = new Font("Sans serif", Font.PLAIN, 7);
-			
+			colors.add(new Color(255, 64, 64));
+			colors.add(new Color(64, 255, 64));
+			colors.add( new Color(64, 64, 255));
+			colors.add(new Color(255, 255, 64));
+
 			GraphicsConfiguration gc = GraphicsEnvironment
 			.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 			.getDefaultConfiguration();
-			
+
+			BufferedImage bgImage = null;
+			try {
+			  bgImage = ImageIO.read(new File("img/space.jpg"));
+			} catch (IOException Err) {
+			  // Do nothing
+			  System.err.println("Error!  Could not load bgimage!");
+			}
+
 			BufferedImage image = gc.createCompatibleImage(640, 480);
-			
+
 			Graphics2D _g = (Graphics2D)image.createGraphics();
-			
+
 			// Turn on AA/Speed
 			_g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 								RenderingHints.VALUE_ANTIALIAS_ON);
@@ -58,10 +61,9 @@ public class RenderMap {
 								RenderingHints.VALUE_RENDER_SPEED);
 			_g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
 								RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-			
-			game.Render(640, 480, 0.0, null, colors, bgColor, textColor,
-						planetFont, fleetFont, _g);
-			
+
+			game.Render(640, 480, 0.0, bgImage, colors, _g);
+
             File file = new File(args[1]);
             ImageIO.write(image, "png", file);
         } catch (Exception e) {
