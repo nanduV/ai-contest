@@ -38,24 +38,22 @@ def too_close(x, y, growth_rate):
   return False
 
 def too_close_starting(x, y):
-    if too_close(x, y, 5):
-        # too close to the center planet
-        return True
-    # measure distance between starting planets
-    dist = math.sqrt(4 * x * x + 4 * y * y) # (2x)^2, (2y)^2
-    # same equation as above, with constants plugged in
-    threshold = 0.4 * (2 * math.sqrt(5))
-    if dist < threshold:
-        return True
-    # don't need to test dist < 1, that implied distance to center < 0.5
-    return False
+  if too_close(x, y, 5):
+    # too close to the center planet
+    return True
+  # measure distance between starting planets
+  dist = math.sqrt(4 * x * x + 4 * y * y) # (2x)^2, (2y)^2
+  # same equation as above, with constants plugged in
+  threshold = 0.4 * (2 * math.sqrt(5))
+  # don't need to test dist < 1, that implies distance to center < 0.5
+  return dist < threshold
 
 planets.append(make_planet(0, 0, 0, random.randint(0, 5), random.randint(1, 150)))
 x = rand_coord()
 y = rand_coord()
 while too_close_starting(x, y):
-    x = rand_coord()
-    y = rand_coord()
+  x = rand_coord()
+  y = rand_coord()
 planets.append(make_planet(x, y, 1, 5, 100))
 planets.append(make_planet(-x, -y, 2, 5, 100))
 for i in range(10):
