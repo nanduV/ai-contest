@@ -361,7 +361,7 @@ public class Game implements Cloneable {
 	    remainingPlayers.add(f.Owner());
 	}
 	remainingPlayers.remove(0);
-	if (numTurns > maxGameLength) {
+	if (numTurns >= maxGameLength) {
 	    int leadingPlayer = -1;
 	    int mostShips = -1;
 	    for (int playerID : remainingPlayers) {
