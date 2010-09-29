@@ -128,6 +128,7 @@ public class Game implements Cloneable {
     // they are player number 1.
     public String PovRepresentation(int pov) {
       StringBuilder s = new StringBuilder();
+      s.append("# : turns_remaining " + (maxGameLength - numTurns) + "\n");
       for (Planet p : planets) {
         // We can't use String.format here because in certain locales, the ,
         // and . get switched for X and Y (yet just appending them using the

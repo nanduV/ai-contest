@@ -311,13 +311,16 @@ def play_game(map, max_turn_time, max_turns, players, debug=False):
   remaining = remaining_players(planets, fleets)
   while turn_number <= max_turns and len(remaining) > 1:
     temp_fleets = {}
+    global_message = "# : turns_remaining %d\n" % (max_turns - (turn_number-1),)
     for i, c in enumerate(clients):
       if (i+1) not in remaining:
         continue
       message = serialize_game_state(planets, fleets, i+1)
       if debug:
         sys.stderr.write("engine > player" + str(i+1) + ":\n")
+        sys.stderr.write(global_message)
         sys.stderr.write(message)
+      c.write(global_message)
       c.write(message)
     client_done = [False] * len(clients)
     start_time = time.time()
