@@ -62,7 +62,6 @@ if ($rank == NULL) {
   $rank = "N/A. No ranking available";
   $elo = "N/A. No elo estimate available";
 }
-#$rank = ($rank == NULL)?"N/A. No ranking available":$rank;
 $username = htmlentities($userdata["username"]);
 $created = $userdata["created"];
 $country_id = htmlentities($userdata["country_id"]);
