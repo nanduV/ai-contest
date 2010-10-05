@@ -60,11 +60,9 @@ if ($rank == NULL) {
   $rank = "N/A. No ranking available";
   $elo = "N/A. No elo estimate available";
 } else {
-  $upper_bound = $rankdata["score"] + $rankdata["plus_bound"];
-  $lower_bound = $rankdata["score"] - $rankdata["minus_bound"];
-  $elo = '<span style="font-size: 80%">'. $lower_bound .'</span>/'.
+  $elo = '<span style="font-size: 80%">'. $rankdata["lower_bound"] .'</span>/'.
          $rankdata["score"] .'/<span style="font-size: 80%">'.
-         $upper_bound .'</span>';
+         $rankdata["upper_bound"] .'</span>';
 }
 $username = htmlentities($userdata["username"]);
 $created = $userdata["created"];
@@ -101,7 +99,7 @@ EOT;
 }
 echo <<<EOT
     <p><strong>Current Rank:</strong>&nbsp;$rank</p>
-    <p title="Lower/Mean/Upper"><strong>Estimated Elo:</strong>&nbsp;$elo</p>
+    <p title="Lower/Estimate/Upper"><strong>Estimated Elo:</strong>&nbsp;$elo</p>
 
     <!--<h3><span>Statistics</span><div class=\"divider\" /></h3>
     <img width="600" height="280" alt="" src="profile_ranktime.php?user_id=$user_id" />-->

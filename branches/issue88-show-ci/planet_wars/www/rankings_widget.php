@@ -137,8 +137,8 @@ EOT;
         $username = htmlentities($row["username"]);
         $programming_language = $row["programming_language"];
         $score = $row["score"];
-        $upper_bound = $score + $row["plus_bound"];
-        $lower_bound = $score - $row["minus_bound"];
+        $upper_bound = $row["upper_bound"];
+        $lower_bound = $row["lower_bound"];
         $programming_language_link = urlencode($row["programming_language"]);
         $rank = $row["rank"];
 	if ($score == $old_score) {
