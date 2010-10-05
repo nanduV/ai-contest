@@ -69,7 +69,10 @@ for g in sorted(games.keys()):
 
 print "elo"
 print " mm"
-# print " exactdist" # we don't really need this
+print " exactdist" # calculate better confidence intervals.
+                   # using " covariance" here would be even better but may be
+                   # too expensive to use on the server since its cost is
+                   # cubic in the number of players
 print " ratings >ratings.txt"
 print " x"
 print "x"
