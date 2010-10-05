@@ -28,12 +28,14 @@ for line in f:
   (rank, user_id, username, submission_id, elo, plus_bound, minus_bound, \
     num_games, score, oppo, draws) = tokens
   elo = int(elo) + 2000
+  upper_bound = elo + int(plus_bound)
+  lower_bound = elo - int(minus_bound)
   values = "%s,%s,%s,0,0,0,%s,%s,%s" % (leaderboard_id, submission_id, rank,
-    elo, plus_bound, minus_bound)
+    elo, upper_bound, lower_bound)
   cursor.execute("""
     INSERT INTO rankings
     (leaderboard_id,submission_id,rank,wins,losses,draws,
-      score,plus_bound,minus_bound)
+      score,upper_bound,lower_bound)
     VALUES
     (""" + values + """)
   """)
