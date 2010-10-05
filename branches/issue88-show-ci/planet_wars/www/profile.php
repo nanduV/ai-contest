@@ -22,7 +22,7 @@ include_once 'profile_games_widget.php';
 // Fetch Rank Data
 $rankquery = <<<EOT
 select
-    r.rank
+    r.*
 from
     rankings r
     inner join submissions s on s.submission_id = r.submission_id
@@ -55,8 +55,14 @@ $userdata = mysql_fetch_assoc($userresult);
 if ($rankresult) {
   $rankdata = mysql_fetch_assoc($rankresult);
   $rank = $rankdata["rank"];
+  $elo = $rankdata["score"] ." (+". $rankdata["plus_bound"] ."/-". 
+    $rankdata["minus_bound"] .")";
 }
-$rank = ($rank == NULL)?"N/A. No ranking available":$rank;
+if ($rank == NULL) {
+  $rank = "N/A. No ranking available";
+  $elo = "N/A. No elo estimate available";
+}
+#$rank = ($rank == NULL)?"N/A. No ranking available":$rank;
 $username = htmlentities($userdata["username"]);
 $created = $userdata["created"];
 $country_id = htmlentities($userdata["country_id"]);
@@ -85,14 +91,14 @@ echo <<<EOT
 EOT;
 if ($bio != NULL) {
 echo <<<EOT
-    <dt>About Me:</dt>
-    <dd>$bio &nbsp;</dd>
+    <p><strong>About Me:</strong><br>
+    $bio &nbsp;
+    </p>
 EOT;
 }
 echo <<<EOT
-    </dl>
     <p><strong>Current Rank:</strong>&nbsp;$rank</p>
-    </dl>
+    <p><strong>Estimated Elo:</strong>&nbsp;$elo</p>
 
     <!--<h3><span>Statistics</span><div class=\"divider\" /></h3>
     <img width="600" height="280" alt="" src="profile_ranktime.php?user_id=$user_id" />-->
