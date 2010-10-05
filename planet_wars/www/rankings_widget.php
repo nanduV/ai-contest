@@ -121,9 +121,9 @@ $table .= <<<EOT
   <th>Country</th>
   <th>Organization</th>
   <th>Language</th>
+  <th>-</th>
   <th>Elo Score</th>
   <th>+</th>
-  <th>-</th>
   <!--<th>Wins</th>-->
   <!--<th>Losses</th>-->
   <!--<th>Draws</th>-->
@@ -137,8 +137,8 @@ EOT;
         $username = htmlentities($row["username"]);
         $programming_language = $row["programming_language"];
         $score = $row["score"];
-        $plus_bound = $row["plus_bound"];
-        $minus_bound = $row["minus_bound"];
+        $upper_bound = $score + $row["plus_bound"];
+        $lower_bound = $score - $row["minus_bound"];
         $programming_language_link = urlencode($row["programming_language"]);
         $rank = $row["rank"];
 	if ($score == $old_score) {
@@ -172,9 +172,9 @@ EOT;
         $table .= "    <td><a href=\"country_profile.php?country_id=$country_id\">$flag_filename</a></td>";
         $table .= "    <td><a href=\"organization_profile.php?org_id=$org_id\">$org_name</a></td>";
         $table .= "    <td><a href=\"language_profile.php?lang=$programming_language_link\">$programming_language</a></td>";
+        $table .= "    <td>$lower_bound</td>";
         $table .= "    <td>$score</td>";
-        $table .= "    <td>$plus_bound</td>";
-        $table .= "    <td>$minus_bound</td>";
+        $table .= "    <td>$upper_bound</td>";
         //$table .= "    <td>$wins</td>";
         //$table .= "    <td>$losses</td>";
         //$table .= "    <td>$draws</td>";
