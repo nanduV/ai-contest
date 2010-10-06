@@ -41,8 +41,8 @@ import subprocess
 import errno
 import time
 import shutil
-#import MySQLdb
-#from server_info import server_info
+import MySQLdb
+from server_info import server_info
 
 BOT = "MyBot"
 SAFEPATH = re.compile('[a-zA-Z0-9_.$-]+$')
@@ -256,17 +256,16 @@ def compile_function(language):
   return out, err
 
 def get_programming_languages():
-    pass
-#  connection = MySQLdb.connect(host = server_info["db_host"],
-#                               user = server_info["db_username"],
-#                               passwd = server_info["db_password"],
-#                               db = server_info["db_name"])
-#  cursor = connection.cursor(MySQLdb.cursors.DictCursor)
-#  cursor.execute("SELECT * FROM languages")
-#  programming_languages = cursor.fetchall()
-#  cursor.close()
-#  connection.close()
-#  return programming_languages
+  connection = MySQLdb.connect(host = server_info["db_host"],
+                               user = server_info["db_username"],
+                               passwd = server_info["db_password"],
+                               db = server_info["db_name"])
+  cursor = connection.cursor(MySQLdb.cursors.DictCursor)
+  cursor.execute("SELECT * FROM languages")
+  programming_languages = cursor.fetchall()
+  cursor.close()
+  connection.close()
+  return programming_languages
 
 # Autodetects the language of the entry in the current working directory and
 # compiles it.
