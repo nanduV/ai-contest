@@ -35,7 +35,7 @@ cursor.execute("""
     s.user_id,
     s.timestamp
   FROM submissions s
-  WHERE s.status != 20
+  WHERE s.status >= 27 
   """)
 # Split the submissions up by user
 users = defaultdict(list)
