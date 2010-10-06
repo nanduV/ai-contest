@@ -3,7 +3,7 @@
 
 function get_server_info() {
   $server_info = array();
-  $lines = file("server_info.txt");
+  $lines = file("../server_info.txt");
   foreach ($lines as $line_num => $line) {
     $line = trim($line);
     $tokens = split(":", $line);
