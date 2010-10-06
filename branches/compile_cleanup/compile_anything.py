@@ -5,15 +5,15 @@
 # attempts to compile it, returning the stdout and stderr.
 # The auto-detection works by looking for the "main" code file of
 # the available languages. If the number of matching languages is 0 or
-# more than 1, it is an error, and a message is printed on stderr.
+# more than 1, it is an error, and an appropriate error message is returned.
 #
 # To add a new language you must add an entry to the "languages" dictionary in
 # the following format:
-#   LanguageName : (extension, [NukeGlobs], [(Compile_glob, Compile_class)])
+#   LanguageName : (extension, [NukeGlobs], [(Compile_globs, Compile_class)])
 #
 # For example the entry for Python is as follows:
-#   "Python" : (".py", ["*.pyc"], [("*.py", ChmodCompiler())]).
-# This defines the extension as .py, removes all .pyc files and runs all the
+#   "Python" : (".py", ["*.pyc"], [("*.py", ChmodCompiler("Python"))]).
+# This defines the extension as .py, removes all .pyc files, and runs all the
 # found .py files through the ChmodCompiler, which is a pseudo-compiler class
 # which only chmods the found files.
 #
@@ -24,13 +24,15 @@
 # If in doubt just stick to the ExternalCompiler.
 #
 # An example is from the C# Entry:
-#   "C#" : (".exe", ["*.exe"], [("*.cs", ExternalCompiler(lansys["C#"][0]))])
+#   "C#" : (".exe", ["*.exe"],
+#           [(["*.cs"], ExternalCompiler(comp_args["C#"][0]))])
 #
 # To make the dictionary more readable the flags have been split into a
-# separate "lansys" dictionary. C#'s entry looks like so:
+# separate "comp_args" dictionary. C#'s entry looks like so:
 #   "C#" : [["gmcs", "-warn:0", "-out:%s.exe" % BOT]]
-# At compile time this all boils down to:
+# At runtime this all boils down to:
 #   gmcs -warn:0 -out:MyBot.exe *.cs
+# (though the *.cs is actually replaced with the list of files found)
 
 import os
 import re
