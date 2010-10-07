@@ -73,53 +73,58 @@ def nukeglob(pattern):
       if e.errno != errno.ENOENT:
         raise
 
-def system(args):
-  cmd = ' '.join(args) + "\n"
+class Log:
+  def __init__(self):
+    self.out = ""
+    self.err = ""
+
+def system(args, log):
+  log.out += ' '.join(args) + "\n"
   proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   (out, err) = proc.communicate()
-  return cmd + out, err
+  log.out += out
+  log.err += err
+  return proc.returncode == 0
 
-def check_path(path):
+def check_path(path, log):
   if not os.path.exists(path):
-    return "\nFailure: output file " + str(path) + " was not created.\n"
+    log.err += "\nFailure: output file " + str(path) + " was not created.\n"
+    return False
   else:
-    return ""
+    return True
 
 class Compiler:
-  def compile(self, globs):
+  def compile(self, globs, log):
     raise NotImplementedError
 
 class ChmodCompiler(Compiler):
   def __init__(self, language):
     self.language = language
 
-  def compile(self, globs):
-    err = ""
+  def compile(self, globs, log):
     for f in safeglob_multi(globs):
       try:
         os.chmod(f, 0644)
       except Exception, e:
-        err += "Error chmoding %s - %s\n" % (f, e)
-    return self.language + " scripts do not need to be compiled.\n", err
+        log.err += "Error chmoding %s - %s\n" % (f, e)
+    log.out += self.language + " scripts do not need to be compiled.\n"
+    return True
 
 class ExternalCompiler(Compiler):
   def __init__(self, args, separate=False):
     self.args = args
     self.separate = separate
 
-  def compile(self, globs):
-    out, err = "", ""
+  def compile(self, globs, log):
     files = safeglob_multi(globs)
     if self.separate:
       for file in files:
-        tout, terr = system(self.args + [file])
-        out += tout
-        err += terr
+        if not system(self.args + [file], log):
+          return False
     else:
-      tout, terr = system(self.args + files)
-      out += tout
-      err += terr
-    return out, err
+      if not system(self.args + files, log):
+        return False
+    return True
 
 # Compiles each file to its own output, based on the replacements dict.
 class TargetCompiler(Compiler):
@@ -128,21 +133,17 @@ class TargetCompiler(Compiler):
     self.replacements = replacements
     self.outflag = outflag
 
-  def compile(self, globs):
+  def compile(self, globs, log):
     sources = safeglob_multi(globs)
-    out, err = "", ""
     for source in sources:
-      for old_ext, new_ext in self.replacements.iteritems():
-        i = source.rfind(old_ext)
-        if i >= 0:
-          target = source[:i] + new_ext
-          break
+      head, ext = os.path.splitext(source)
+      if ext in self.replacements:
+        target = head + self.replacements[ext]
       else:
-        err += "Could not determine target for source file %s.\n" % source
-        continue
-      tout, terr = system(self.args + [self.outflag, target, source])
-      out += tout
-      err += terr
+        log.err += "Could not determine target for source file %s.\n" % source
+        return False
+      if not system(self.args + [self.outflag, target, source], log):
+        return False
 
 comp_args = {
   # lang : ([list of compilation arguments], ...)
@@ -236,24 +237,20 @@ languages = {
   }
 
 
-def compile_function(language):
+def compile_function(language, log):
   info = languages[language]
   extension = info[0]
   nukeglobs = info[1]
   compilers = info[2]
 
-  out, err = "", ""
-
   for glob in nukeglobs:
     nukeglob(glob)
 
   for globs, compiler in compilers:
-    tout, terr = compiler.compile(globs)
-    out += tout
-    err += terr
+    if not compiler.compile(globs, log):
+      return False
 
-  err += check_path(BOT + extension)
-  return out, err
+  return check_path(BOT + extension, log)
 
 def get_programming_languages():
   connection = MySQLdb.connect(host = server_info["db_host"],
@@ -270,8 +267,7 @@ def get_programming_languages():
 # Autodetects the language of the entry in the current working directory and
 # compiles it.
 def compile_anything():
-  output = ""
-  error = ""
+  log = Log()
   programming_languages = get_programming_languages()
   detected_langs = [
     lang for lang in programming_languages \
@@ -279,35 +275,35 @@ def compile_anything():
   ]
   # If no language was detected
   if len(detected_langs) == 0:
-    error += "The auto-compile environment could not locate your main code\n"
-    error += "file. This is probably because you accidentally changed the\n"
-    error += "name of your main code file. You must include exactly one file\n"
-    error += "with one of the following names:\n"
+    log.err += "The auto-compile environment could not locate your main code\n"
+    log.err += "file. This is probably because you accidentally changed the\n"
+    log.err += "name of your main code file. You must include exactly one file"
+    log.err += "\nwith one of the following names:\n"
     for lang in programming_languages:
-      error += "   * " + lang["main_code_file"] + " (" + lang["name"] + ")\n"
-    error += "This is to help the auto-compile environment figure out which\n"
-    error += "programming language you are using.\n"
-    return output, error, "NULL"
+      log.err += "   * " + lang["main_code_file"] + " (" + lang["name"] + ")\n"
+    log.err += "This is to help the auto-compile environment figure out which"
+    log.err += "\nprogramming language you are using.\n"
+    return log.out, log.err, "NULL"
   # If more than one language was detected
   if len(detected_langs) > 1:
-    error = "The auto-compile environment found more than one main code "
-    error += "file:\n"
+    log.err = "The auto-compile environment found more than one main code "
+    log.err += "file:\n"
     for lang in detected_langs:
-      error += "   * " + lang["main_code_file"] + " (" + lang["name"] + ")\n"
-    error += "You must submit only one of these files so that the "
-    error += "auto-compile environment can figure out which programming "
-    error += "language you are trying to use.\n"
-    return output, error, "NULL"
+      log.err += "   * " + lang["main_code_file"] + " (" + lang["name"] + ")\n"
+    log.err += "You must submit only one of these files so that the\n"
+    log.err += "auto-compile environment can figure out which programming\n"
+    log.err += "language you are trying to use.\n"
+    return log.out, log.err, "NULL"
   # If we get this far, then we have successfully auto-detected the language
   # that this contestant is using.
   main_code_file = detected_langs[0]["main_code_file"]
   detected_lang = detected_langs[0]["name"]
   language_id = detected_langs[0]["language_id"]
-  output += "Found " + main_code_file + ". Compiling this entry as " + \
+  log.out += "Found " + main_code_file + ". Compiling this entry as " + \
     detected_lang + "\n"
   t1 = time.time()
-  out, err = compile_function(detected_lang)
-  output += "Completed in %f seconds.\n" % (time.time() - t1)
-  output += out
-  error += err
-  return output, error, language_id
+  if compile_function(detected_lang, log):
+    log.out += "Completed in %f seconds.\n" % (time.time() - t1)
+  else:
+    log.err += "Compilation failed.\n"
+  return log.out, log.err, language_id
