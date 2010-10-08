@@ -144,6 +144,7 @@ class TargetCompiler(Compiler):
         return False
       if not system(self.args + [self.outflag, target, source], log):
         return False
+    return True
 
 comp_args = {
   # lang : ([list of compilation arguments], ...)
