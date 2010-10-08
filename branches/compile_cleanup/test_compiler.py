@@ -22,12 +22,24 @@ compile_anything.Log = lambda: log
 
 # taken from the schema/sampledb, maybe slightly modified
 languages = [
-        (1, "Java", BOT + ".java", "java -jar %s.jar" % BOT),
-        (3, "C++", BOT + ".cc", "./" + BOT),
-        (4, "C", BOT + ".c", "./" + BOT),
-        (6, "Python", BOT + ".py", "python %s.py" % BOT),
-        (7, "C#", BOT + ".cs", "mono %s.exe" % BOT),
-        (8, "Haskell", BOT + ".hs", "./" + BOT),
+        ( 1, "Java", BOT + ".java", "java -jar %s.jar" % BOT),
+        ( 3, "C++", BOT + ".cc", "./" + BOT),
+        ( 4, "C", BOT + ".c", "./" + BOT),
+        ( 6, "Python", BOT + ".py", "python %s.py" % BOT),
+        ( 7, "C#", BOT + ".cs", "mono %s.exe" % BOT),
+        ( 8, "Haskell", BOT + ".hs", "./" + BOT),
+        # These are made up. The only things necessary are items 2 and 3.
+        ( 9, "Clojure", BOT + ".clj", ""),
+        (10, "CoffeeScript", BOT + ".coffee", ""),
+        (11, "Go", BOT + ".go", ""),
+        (12, "Javascript", BOT + ".js", ""),
+        (13, "Lisp", BOT + ".lisp", ""),
+        (14, "Lua", BOT + ".lua", ""),
+        (15, "OCaml", BOT + ".ml", ""),
+        (16, "Perl", BOT + ".pl", ""),
+        (17, "PHP", BOT + ".php", ""),
+        (18, "Ruby", BOT + ".rb", ""),
+        (19, "Scheme", BOT + ".ss", ""),
     ]
 
 languages_dict = [{ "language_id": a,
@@ -99,7 +111,6 @@ def run_test_case(filelist, dry_run=False):
         compile_anything.system = system
         os.path.exists = ospathexists
         mockglob.update(make_mock_glob(filelist))
-        print mockglob
     else:
         cwd = os.getcwd()
         testdir = tempfile.mkdtemp()
@@ -129,25 +140,43 @@ def run_test_case(filelist, dry_run=False):
 
 test_cases = [
         ([BOT + ".c", "aux1.c", BOT + ".o", "aux1.o", BOT], True),
+        ([BOT + ".cs", BOT + ".exe"], True),
+        ([BOT + ".cc", "PlanetWars.cc", "PlanetWars.h", "PlanetWars.o",
+            BOT + ".o", BOT], True),
+        ([BOT + ".clj"], True),
+        ([BOT + ".coffee"], True),
+        ([BOT + ".go", "_go_.6", BOT], True),
         ([BOT + ".hs", BOT], True),
         ([BOT + ".java", "PlanetWars.java", BOT + ".class",
             "PlanetWars.class", "PlanetWars$Planet.class",
             "PlanetWars$Fleet.class", BOT + ".jar"], True),
-        ([BOT + ".cc", "PlanetWars.cc", "PlanetWars.h"], False)
+        ([BOT + ".js"], True),
+        ([BOT + ".lisp", BOT + ".sbcl", BOT], True),
+        ([BOT + ".lua"], True),
+        ([BOT + ".ml", BOT + ".native"], True),
+        ([BOT + ".pl"], True),
+        ([BOT + ".php"], True),
+        ([BOT + ".py", BOT + ".pyc"], True),
+        ([BOT + ".rb"], True),
+        ([BOT + ".ss"], True),
+        # You actually need to have a working c++ implementation for
+        # the test case below
+        #([BOT + ".cc", "PlanetWars.cc", "PlanetWars.h"], False)
     ]
 
 def main():
     for filelist, dry_run in test_cases:
         log.clear()
         ret = run_test_case(filelist, dry_run)
-        print "Out"
-        print log.out
-        print "Err"
-        print log.err
+        #print "Out"
+        #print log.out
+        #print "Err"
+        #print log.err
         if ret:
             print "Success!"
         else:
             print "Failure."
+            print log.err
 
 if __name__ == "__main__":
     main()
