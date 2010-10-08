@@ -171,7 +171,7 @@ comp_args = {
 targets = {
   # lang : { old_ext : new_ext, ... }
   "C"   : { ".c" : ".o" },
-  "C++" : { ".c" : ".o", ".cpp" : ".o", ".cc" : ".o"},
+  "C++" : { ".c" : ".o", ".cpp" : ".o", ".cc" : ".o" },
   }
 
 languages = {
