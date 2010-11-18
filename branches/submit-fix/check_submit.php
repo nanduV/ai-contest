@@ -7,17 +7,18 @@ function ends_with($str, $sub) {
   return preg_match('/\Q' . $sub . '\E$/', $str);
 }
 
-function upload_errors() {
-  if ($_FILES['uploadedfile']['error'] > 0) {
+function upload_errors($errors) {
+  if (count($_FILES) == 0 || count($_FILES['uploadedfile']) == 0
+      || strlen($_FILES['uploadedfile']['name']) == 0
+      || $_FILES['uploadedfile']['error'] == UPLOAD_ERR_NO_FILE) {
+    $errors[] = "Somehow you forgot to upload a file!";
+  } elseif ($_FILES['uploadedfile']['error'] > 0) {
     $errors[] = "General upload error: " . $_FILES['uploadedfile']['error'];
     if ($_FILES['uploadedfile']['error'] == UPLOAD_ERR_FORM_SIZE) {
       $errors[] = "Your zip file may be larger than the maximum allowed " .
         "size, 1 MB. You probably have some executables or other larger " .
         "files in your zip file. Re-zip your submission, being sure to " .
         "include only the source code.";
-    } elseif ($_FILES['uploadedfile']['error'] == UPLOAD_ERR_NO_FILE) {
-      $errors[] = "Somehow you forgot to upload a file!";
-    }
   } else {
     $file_size = $_FILES['uploadedfile']['size'];
     if ($file_size > 2000000) {
@@ -32,6 +33,7 @@ function upload_errors() {
       }
     }
   }
+  return $errors;
 }
 
 $submission_directory = "/home/contest/ai-contest/planet_wars/submissions/";
@@ -44,7 +46,7 @@ if (count($errors) == 0) {
   if (has_recent_submission()) {
     $errors[] = "Sorry your last submission was too recent.";
   } else {
-    upload_errors();
+    $errors = upload_errors($errors);
   }
 }
 
