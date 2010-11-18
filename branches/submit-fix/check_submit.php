@@ -19,6 +19,7 @@ function upload_errors($errors) {
         "size, 1 MB. You probably have some executables or other larger " .
         "files in your zip file. Re-zip your submission, being sure to " .
         "include only the source code.";
+    }
   } else {
     $file_size = $_FILES['uploadedfile']['size'];
     if ($file_size > 2000000) {
