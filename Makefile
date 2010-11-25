@@ -12,26 +12,22 @@
 #
 # Makefile for the entire AI contest project.
 
-SUBDIRS = cpp_util planet_wars third_party
+CC=g++
+CPPFLAGS += -Wall -I.. -I../third_party/googletest/include
+VPATH = third_party/googletest/make:cpp_util:sandbox
+SUBDIRS = engine viz
+VM_IMG = http://csclub.uwaterloo.ca/~ssalbiz/test.img
 
-all: subdirs
+all: test.img sample_bots/do_nothing_bot sample_bots/timeout_bot
 
 clean:
-	for dir in $(SUBDIRS); \
-	do \
-		$(MAKE) -C $$dir clean; \
-	done
+	rm *.img
 
-cpp_util: third_party
+sample_bots/do_nothing_bot:
+	g++ -o sample_bots/do_nothing_bot sample_bots/do_nothing_bot.cc
 
-planet_wars: cpp_util sandbox third_party
+sample_bots/timeout_bot:
+	g++ -o sample_bots/timeout_bot sample_bots/timeout_bot.cc
 
-sandbox: cpp_util third_party
-
-.PHONY: subdirs $(SUBDIRS)
-subdirs: $(SUBDIRS)
-
-tic_tac_toe: cpp_util sandbox third_party
-
-$(SUBDIRS):
-	$(MAKE) -C $@
+test.img:
+	wget $(VM_IMG) -O test.img
