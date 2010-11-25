@@ -254,7 +254,7 @@ languages = {
                    [BOT],
                    [([""], ExternalCompiler(comp_args["Haskell"][0]))]),
   "Java"        : (".jar",
-                   ["*.class, *.jar"],
+                   ["*.class", "*.jar"],
                    [(["*.java"], JavaCompiler(comp_args["Java"][0])),
                     (["*.class"], JavaCompiler(comp_args["Java"][1]))]),
   "Javascript"  : (".js",
