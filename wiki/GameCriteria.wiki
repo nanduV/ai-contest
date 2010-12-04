@@ -52,3 +52,7 @@ Keep in mind that there is a tradeoff between
 Make really sure that there is no way to "solve" the problem. It's bad if partway through the contest someone comes up with "the best possible solution". If many people find a perfect or near-perfect solution, the rankings at the top of the leaderboard become random for all practical purposes.
 
 Games like Tic-Tac-Toe are obvious examples of bad choices. However, even deep games like Rock Paper Scissors can turn into a disaster, since there are solutions that are very close to being perfect, even if they're not exactly perfect.
+
+==Fun to Watch==
+
+A big booster of interest in the contest is interesting visualizations.
